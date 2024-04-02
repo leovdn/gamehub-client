@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-jest-boilerplate",
-  "version": "1.0.0",
+  "name": "gamehub-client",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
