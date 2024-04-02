@@ -1,10 +1,13 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { ThemeProvider } from 'styled-components'
 
+import theme from '../styles/theme'
 import GlobalStyles from 'styles/global'
+
 function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Head>
         <title>Advanced ReactJS - Boilerplate</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -14,7 +17,7 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
-    </>
+    </ThemeProvider>
   )
 }
 
