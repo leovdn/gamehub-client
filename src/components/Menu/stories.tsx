@@ -11,3 +11,10 @@ export default {
 } as Meta
 
 export const Basic: StoryFn = (args) => <Menu {...args} />
+
+Basic.parameters = {
+  layout: 'fullscreen',
+  backgrounds: {
+    default: 'dark'
+  }
+}
