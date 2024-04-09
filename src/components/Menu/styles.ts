@@ -93,8 +93,9 @@ export const MenuFull = styled.nav<MenuFullProps>`
 
     background: ${theme.colors.white};
     overflow: hidden;
-    opacity: ${isOpen ? 1 : 0};
     pointer-events: ${isOpen ? 'all' : 'none'};
+    opacity: ${isOpen ? 1 : 0};
+    transition: opacity ease-in-out 0.2s;
 
     > svg {
       width: 2.4rem;
@@ -123,8 +124,13 @@ export const MenuFull = styled.nav<MenuFullProps>`
 
       color: ${theme.colors.black};
 
-      transform: ${isOpen ? 'translateX(0)' : 'translateX(100%)'};
-      transition: transform 0.3s ease-in-out;
+      transform: ${isOpen ? 'translateY(0)' : 'translateY(3rem)'};
+      transition: transform 0.2s ease-in-out;
+    }
+
+    ${RegisterBox} {
+      transform: ${isOpen ? 'translateY(0)' : 'translateY(3rem)'};
+      transition: transform 0.2s ease-in-out;
     }
   `}
 `
