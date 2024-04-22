@@ -4,20 +4,20 @@ import { LogoProps } from '.'
 const wrapperModifiers = {
   normal: () => css`
     width: 11rem;
-    height: 3.3rem;
+    height: 2rem;
   `,
   large: () => css`
     width: 20rem;
-    height: 5.9rem;
+    height: 4rem;
   `,
 
   hideonmobile: () => css`
     @media (max-width: 600px) {
       width: 5.8rem;
-      height: 4.5rem;
+      height: 2.5rem;
 
       svg {
-        height: 4.5rem;
+        height: 3.2rem;
         pointer-events: none;
       }
 
