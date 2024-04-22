@@ -42,7 +42,7 @@ export const IconWrapper = styled.div`
 
 export const MenuNav = styled.div`
   ${({ theme }) => css`
-    margin-left: ${theme.spacings.small};
+    margin-left: ${theme.spacings.medium};
   `}
 `
 
