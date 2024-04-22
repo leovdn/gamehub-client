@@ -23,8 +23,9 @@ export default {
     }
   },
   colors: {
-    primary: '#E4597A',
+    primary: '#F231A5',
     secondary: '#3CD3C1',
+    alternative: '#E4597A',
     mainBg: '#06092B',
     white: '#FAFAFA',
     black: '#030517',
