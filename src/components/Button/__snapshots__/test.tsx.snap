@@ -2,11 +2,15 @@
 
 exports[`<Button /> should render the medium button size by Default 1`] = `
 .c0 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.8rem;
   border-radius: 0.4rem;
   border: none;
   background: linear-gradient(180deg,#ff4f5f 0%,#f062c0 50%);
   color: #FAFAFA;
+  text-decoration: none;
   cursor: pointer;
   height: 4rem;
   font-size: 1.4rem;
