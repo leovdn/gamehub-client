@@ -1,7 +1,18 @@
 import styled, { css } from 'styled-components'
+import * as RibbonStyles from 'components/Ribbon/styles'
 
 export const Wrapper = styled.main`
   position: relative;
+
+  @media (max-width: 768px) {
+    ${RibbonStyles.Wrapper} {
+      right: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 
   @media (min-width: 768px) {
     box-shadow: 0 0.4rem 0.5rem 0 rgba(0, 0, 0, 0.2);
