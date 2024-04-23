@@ -10,6 +10,9 @@ export default {
     img: '/img/gamecard-img.png',
     price: 'R$ 235,00',
     promotionalPrice: 'R$ 200,00'
+  },
+  argTypes: {
+    onFavorite: { action: 'clicked' }
   }
 } as Meta
 

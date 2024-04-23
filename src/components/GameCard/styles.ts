@@ -8,6 +8,7 @@ export const Wrapper = styled.article`
     background-color: ${theme.colors.white};
     width: 100%;
     height: 100%;
+    position: relative;
   `}
 `
 
@@ -82,6 +83,7 @@ export const FavButton = styled.div`
     position: absolute;
     top: -0.5rem;
     right: 0;
+    cursor: pointer;
   `}
 
   svg {
