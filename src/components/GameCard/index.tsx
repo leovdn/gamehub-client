@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import * as S from './styles'
-import { AddShoppingCart, FavoriteBorder } from 'styled-icons/material-outlined'
+import {
+  AddShoppingCart,
+  Favorite,
+  FavoriteBorder
+} from 'styled-icons/material-outlined'
 import Button from 'components/Button'
 
 export type GameCardProps = {
@@ -9,6 +13,8 @@ export type GameCardProps = {
   img: string
   price: string
   promotionalPrice?: string
+  favorite?: boolean
+  onFavorite?: () => void
 }
 
 const GameCard = ({
@@ -16,7 +22,9 @@ const GameCard = ({
   developer,
   img,
   price,
-  promotionalPrice
+  promotionalPrice,
+  favorite = false,
+  onFavorite
 }: GameCardProps) => {
   return (
     <S.Wrapper>
@@ -30,8 +38,12 @@ const GameCard = ({
           <S.Developer>{developer}</S.Developer>
         </S.Info>
 
-        <S.FavButton role="button">
-          <FavoriteBorder aria-label="Add to wishlist" />
+        <S.FavButton role="button" onClick={onFavorite}>
+          {favorite ? (
+            <Favorite aria-label="Remove from wishlist" />
+          ) : (
+            <FavoriteBorder aria-label="Add to wishlist" />
+          )}
         </S.FavButton>
 
         <S.BuyBox>
