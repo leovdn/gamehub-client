@@ -19,13 +19,6 @@ const settings: SliderSettings = {
         vertical: false,
         verticalSwiping: false
       }
-    },
-    {
-      breakpoint: 1170,
-      settings: {
-        vertical: false,
-        verticalSwiping: false
-      }
     }
   ]
 }

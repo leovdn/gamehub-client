@@ -22,7 +22,7 @@
     "polished": "^4.3.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-slick": "^0.30.2",
+    "react-slick": "0.29.0",
     "styled-components": "^6.1.8",
     "styled-icons": "^10.47.1"
   },
