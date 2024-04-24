@@ -7,6 +7,19 @@ import theme from '../src/styles/theme'
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: 'light',
+      values: [
+        {
+          name: 'light',
+          value: theme.colors.white
+        },
+        {
+          name: 'dark',
+          value: theme.colors.mainBg
+        }
+      ]
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -18,7 +31,7 @@ const preview: Preview = {
   decorators: [withThemeFromJSXProvider({
     GlobalStyles,
     themes: { theme },
-    Provider: ThemeProvider
+    Provider: ThemeProvider,
   })]
 }
 
