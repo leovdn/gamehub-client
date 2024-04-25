@@ -6,7 +6,7 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <S.Wrapper>
-      <Logo color="black" />
+      <Logo color="alternative" />
       <S.Content>
         <S.Colunm>
           <Heading color="black" size="small" lineColor="secondary" lineBottom>

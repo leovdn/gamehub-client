@@ -1,3 +1,5 @@
-export default function Home() {
-  return <h1>Home page - GameHub</h1>
+import Home from 'templates/Home'
+
+export default function Index() {
+  return <Home />
 }
