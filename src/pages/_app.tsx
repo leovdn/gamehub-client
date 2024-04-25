@@ -9,11 +9,14 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Head>
-        <title>Advanced ReactJS - Boilerplate</title>
+        <title>GameHub</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="favicon.ico" type="image/x-icon" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="description" content="Boilerplate for React, Next and TS" />
+        <meta
+          name="description"
+          content="A game store with React, NextJS and Styled Components"
+        />
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
