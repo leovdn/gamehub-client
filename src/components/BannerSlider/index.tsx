@@ -27,9 +27,7 @@ const BannerSlider = ({ items }: BannerSliderProps) => {
   return (
     <S.Wrapper>
       <Slider settings={settings}>
-        {items.map((item) => (
-          <Banner key={item.title} {...item} />
-        ))}
+        {items && items.map((item) => <Banner key={item.title} {...item} />)}
       </Slider>
     </S.Wrapper>
   )

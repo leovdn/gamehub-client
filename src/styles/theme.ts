@@ -27,6 +27,7 @@ export default {
     secondary: '#3CD3C1',
     alternative: '#E4597A',
     mainBg: '#06092B',
+    lightBg: '#F2F2F2',
     white: '#FAFAFA',
     black: '#030517',
     lightGray: '#EAEAEA',
