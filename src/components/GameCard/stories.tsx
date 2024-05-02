@@ -7,7 +7,7 @@ export default {
   args: {
     title: 'Population Zero',
     developer: 'Rockstar Studios',
-    img: '/img/gamecard-img.png',
+    img: 'img/gamecard-img.png',
     price: 'R$ 235,00',
     promotionalPrice: 'R$ 200,00'
   },
