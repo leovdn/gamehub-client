@@ -2,20 +2,20 @@ import { screen } from '@testing-library/react'
 
 import Home from './index'
 import { renderWithTheme } from 'utils/tests/helpers'
-import bannerSlideMockItems from 'components/BannerSlider/mock'
-import gameCardSliderMockItems from 'components/GameCardSlider/mock'
-import highlightMockItem from 'components/Highlight/mock'
+import bannersMock from 'components/BannerSlider/mock'
+import gamecardMock from 'components/GameCardSlider/mock'
+import highlightMock from 'components/Highlight/mock'
 
 const props = {
-  banners: bannerSlideMockItems,
-  newGames: [gameCardSliderMockItems[0]],
-  mostPopularHighlight: highlightMockItem,
-  mostPopularGames: [gameCardSliderMockItems[0]],
-  upcommingGames: [gameCardSliderMockItems[0]],
-  upcommingHighligth: highlightMockItem,
-  upcommingMoreGames: [gameCardSliderMockItems[0]],
-  freeGames: [gameCardSliderMockItems[0]],
-  freeHighligth: highlightMockItem
+  banners: bannersMock,
+  newGames: [gamecardMock[0]],
+  mostPopularGames: [gamecardMock[0]],
+  mostPopularHighlight: highlightMock,
+  upcomingGames: [gamecardMock[0]],
+  upcomingHighlight: highlightMock,
+  upcomingMoreGames: [gamecardMock[0]],
+  freeGames: [gamecardMock[0]],
+  freeHighlight: highlightMock
 }
 
 describe('<Home />', () => {
@@ -32,22 +32,32 @@ describe('<Home />', () => {
 
     // logos (menu/footer)
     expect(screen.getAllByRole('img', { name: /gamehub/i })).toHaveLength(2)
+  })
+
+  it('should render the Home page contents', () => {
+    renderWithTheme(<Home {...props} />)
+
+    expect(screen.getByRole('heading', { name: /New/ })).toBeInTheDocument()
 
     expect(
       screen.getByRole('heading', { name: /most popular/i })
     ).toBeInTheDocument()
+
     expect(
       screen.getByRole('heading', { name: /upcoming/i })
     ).toBeInTheDocument()
+
     expect(
       screen.getByRole('heading', { name: /free games/i })
     ).toBeInTheDocument()
 
-    // // banner
-    // expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1)
-    // // card game ( 5 sections com 1 card cada = 5x1 = 5)
-    // expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
-    // // highlight
-    // expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(3)
+    // banner
+    expect(screen.getAllByText(/Board Game/i)).toHaveLength(2)
+    // Gamecard (5 sliders with only 1 element each)
+    expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
+    // highlight
+    expect(screen.getAllByRole('heading', { name: /Red Dead/i })).toHaveLength(
+      3
+    )
   })
 })
