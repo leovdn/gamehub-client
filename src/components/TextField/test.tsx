@@ -3,13 +3,28 @@ import userEvent from '@testing-library/user-event'
 
 import TextField from './index'
 import { renderWithTheme } from 'utils/tests/helpers'
+import { Email } from 'styled-icons/material-outlined'
 
 describe('<TextField />', () => {
   it('should render the text input', () => {
-    renderWithTheme(<TextField label="Name" labelFor="TextField" />)
+    renderWithTheme(<TextField label="TextField" labelFor="TextField" />)
 
     expect(screen.getByLabelText('TextField')).toBeInTheDocument()
-    expect(screen.getByText('Name')).toHaveAttribute('for', 'TextField')
+    expect(screen.getByText('TextField')).toHaveAttribute('for', 'TextField')
+  })
+
+  it('should not render the label', () => {
+    renderWithTheme(<TextField />)
+
+    expect(screen.queryByLabelText('TextField')).not.toBeInTheDocument()
+  })
+
+  it('should render with the Placeholder', () => {
+    renderWithTheme(
+      <TextField label="TextField" labelFor="TextField" placeholder="testing" />
+    )
+
+    expect(screen.getByPlaceholderText('testing')).toBeInTheDocument()
   })
 
   it('should render the text input values', () => {
@@ -22,18 +37,87 @@ describe('<TextField />', () => {
 
   it('should dispatch textfield when text changes', async () => {
     const onInput = jest.fn()
+
     renderWithTheme(
-      <TextField label="Name" labelFor="TextField" onInput={onInput} />
+      <TextField
+        label="TextField"
+        labelFor="TextField"
+        id="TextField"
+        onInput={onInput}
+      />
     )
 
-    expect(onInput).not.toHaveBeenCalled()
-
-    userEvent.type(screen.getByLabelText('TextField'), 'test')
+    const input = screen.getByLabelText('TextField')
+    const text = 'Mock text for testing purposes'
+    userEvent.type(input, text)
 
     await waitFor(() => {
-      expect(onInput).toHaveBeenCalledTimes(4)
+      expect(input).toHaveValue(text)
+      expect(onInput).toHaveBeenCalledTimes(text.length)
     })
 
-    expect(onInput).toHaveBeenCalledWith('test')
+    expect(onInput).toHaveBeenCalledWith(text)
+  })
+
+  it('should render with icon', () => {
+    renderWithTheme(
+      <TextField
+        label="TextField"
+        labelFor="TextField"
+        icon={<Email data-testid="icon" />}
+      />
+    )
+
+    expect(screen.getByTestId('icon')).toBeInTheDocument()
+  })
+
+  it('should render with icon on the right side', () => {
+    renderWithTheme(
+      <TextField
+        label="TextField"
+        labelFor="TextField"
+        icon={<Email data-testid="icon" />}
+        iconPosition="right"
+      />
+    )
+
+    expect(screen.getByTestId('icon').parentElement).toHaveStyle({ order: 1 })
+  })
+
+  it('should not change when disabled', async () => {
+    const onInput = jest.fn()
+
+    renderWithTheme(
+      <TextField
+        label="TextField"
+        labelFor="TextField"
+        id="TextField"
+        onInput={onInput}
+        disabled
+      />
+    )
+
+    const input = screen.getByLabelText('TextField')
+    userEvent.type(input, 'test')
+
+    await waitFor(() => {
+      expect(input).not.toHaveValue('test')
+      expect(onInput).not.toHaveBeenCalled()
+    })
+  })
+
+  it('should run with error', async () => {
+    const onInput = jest.fn()
+    renderWithTheme(
+      <TextField
+        label="TextField"
+        labelFor="TextField"
+        id="TextField"
+        onInput={onInput}
+        error="Error message"
+      />
+    )
+
+    expect(screen.getByText('Error message')).toBeInTheDocument()
   })
 })
