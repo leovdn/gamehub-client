@@ -3,7 +3,7 @@ import TextField, { TextFieldProps } from '.'
 import { Meta, StoryFn } from '@storybook/react'
 
 export default {
-  title: 'TextField',
+  title: 'Form/TextField',
   component: TextField,
   args: {
     label: 'Email',

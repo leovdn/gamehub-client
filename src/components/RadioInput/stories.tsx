@@ -2,7 +2,7 @@ import RadioInput, { RadioInputProps } from '.'
 import { Meta, StoryFn } from '@storybook/react'
 
 export default {
-  title: 'RadioInput',
+  title: 'Form/RadioInput',
   component: RadioInput,
   argTypes: {
     onCheck: { action: 'checked' }
