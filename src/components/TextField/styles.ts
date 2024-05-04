@@ -22,7 +22,12 @@ const wrapperModifiers = {
   `
 }
 
-export const Wrapper = styled.div<TextFieldProps>`
+type WrapperProps = {
+  disabled?: boolean
+  error?: boolean
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   ${({ theme, disabled, error }) => css`
     ${disabled && wrapperModifiers.disabled()}
     ${error && wrapperModifiers.error(theme)}
