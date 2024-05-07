@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { HighlightProps } from '.'
 
-type WrapperProps = Pick<HighlightProps, 'backgroundImage' | 'align'>
+type WrapperProps = Pick<HighlightProps, '$backgroundImage' | 'align'>
 
 const wrapperModifiers = {
   right: () => css`
@@ -23,14 +23,14 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.main<WrapperProps>`
-  ${({ backgroundImage, align }) => css`
+  ${({ $backgroundImage, align }) => css`
     position: relative;
     height: 23rem;
     display: grid;
     grid-template-areas: 'floatimage content';
     grid-template-columns: 1.3fr 2fr;
 
-    background-image: url(${backgroundImage});
+    background-image: url(${$backgroundImage});
     background-position: center center;
     background-size: cover;
 

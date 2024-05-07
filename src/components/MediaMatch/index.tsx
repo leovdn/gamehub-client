@@ -3,17 +3,17 @@ import styled, { css } from 'styled-components'
 type Breakpoint = '1440px' | '1170px' | '768px' | '450px'
 
 export type MediaMatchProps = {
-  lessThan?: Breakpoint
-  greaterThan?: Breakpoint
+  lessthan?: Breakpoint
+  greaterthan?: Breakpoint
 }
 
 const mediaMatchModifiers = {
-  lessThan: (size: Breakpoint) => css`
+  lesserthan: (size: Breakpoint) => css`
     @media (max-width: ${size}) {
       display: block;
     }
   `,
-  greaterThan: (size: Breakpoint) => css`
+  greaterthan: (size: Breakpoint) => css`
     @media (min-width: ${size}) {
       display: block;
     }
@@ -21,10 +21,10 @@ const mediaMatchModifiers = {
 }
 
 export default styled.div<MediaMatchProps>`
-  ${({ lessThan, greaterThan }) => css`
+  ${({ lessthan, greaterthan }) => css`
     display: none;
 
-    ${!!lessThan && mediaMatchModifiers.lessThan(lessThan)}
-    ${!!greaterThan && mediaMatchModifiers.greaterThan(greaterThan)}
+    ${!!lessthan && mediaMatchModifiers.lesserthan(lessthan)}
+    ${!!greaterthan && mediaMatchModifiers.greaterthan(greaterthan)}
   `}
 `

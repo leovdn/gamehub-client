@@ -3,7 +3,7 @@ const highlightMockItem = {
   subtitle: 'Experience the new adventures',
   buttonLabel: 'Buy now',
   buttonLink: '/games/default',
-  backgroundImage: 'img/hl-bg.png'
+  $backgroundImage: 'img/hl-bg.png'
 }
 
 export default highlightMockItem

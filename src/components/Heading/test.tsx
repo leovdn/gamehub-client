@@ -24,7 +24,7 @@ describe('<Heading />', () => {
   })
 
   it('should render the heading with a line on the left side', () => {
-    renderWithTheme(<Heading lineLeft>Most Populars</Heading>)
+    renderWithTheme(<Heading $lineLeft>Most Populars</Heading>)
     expect(screen.getByRole('heading', { name: /Most Populars/i })).toHaveStyle(
       {
         'border-left': '0.7rem solid #F231A5'
@@ -33,7 +33,7 @@ describe('<Heading />', () => {
   })
 
   it('should render the heading with a line on the bottom', () => {
-    renderWithTheme(<Heading lineBottom>Most Populars</Heading>)
+    renderWithTheme(<Heading $lineBottom>Most Populars</Heading>)
     expect(
       screen.getByRole('heading', { name: /Most Populars/i })
     ).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
@@ -43,7 +43,7 @@ describe('<Heading />', () => {
 
   it('should render the heading with a small size', () => {
     renderWithTheme(
-      <Heading size="small" lineBottom>
+      <Heading size="small" $lineBottom>
         Most Populars
       </Heading>
     )
@@ -63,7 +63,7 @@ describe('<Heading />', () => {
 
   it('should render the Heading with a primary line color', () => {
     renderWithTheme(
-      <Heading lineColor="primary" lineLeft lineBottom>
+      <Heading $lineColor="primary" $lineLeft $lineBottom>
         Most Populars
       </Heading>
     )
@@ -77,7 +77,7 @@ describe('<Heading />', () => {
 
   it('should render the Heading with a secondary line color', () => {
     renderWithTheme(
-      <Heading lineColor="secondary" lineLeft lineBottom>
+      <Heading $lineColor="secondary" $lineLeft $lineBottom>
         Most Populars
       </Heading>
     )

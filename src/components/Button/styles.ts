@@ -1,9 +1,9 @@
 import styled, { DefaultTheme, css } from 'styled-components'
 import { ButtonProps } from '.'
 
-type WrapperProps = { hasIcon: boolean } & Pick<
+type WrapperProps = { $hasIcon: boolean } & Pick<
   ButtonProps,
-  'size' | 'fullWidth'
+  'size' | '$fullwidth'
 >
 
 const wrapperModifiers = {
@@ -21,7 +21,7 @@ const wrapperModifiers = {
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `,
-  fullWidth: () => css`
+  $fullwidth: () => css`
     width: 100%;
   `,
   withIcon: (theme: DefaultTheme) => css`
@@ -36,7 +36,7 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullWidth, hasIcon }) => css`
+  ${({ theme, size, $fullwidth, $hasIcon }) => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +54,7 @@ export const Wrapper = styled.button<WrapperProps>`
     }
 
     ${!!size && wrapperModifiers[size](theme)}
-    ${fullWidth && wrapperModifiers.fullWidth()}
-    ${hasIcon && wrapperModifiers.withIcon(theme)}
+    ${$fullwidth && wrapperModifiers.$fullwidth()}
+    ${$hasIcon && wrapperModifiers.withIcon(theme)}
   `}
 `

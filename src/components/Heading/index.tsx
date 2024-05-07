@@ -5,26 +5,26 @@ export type LineColors = 'primary' | 'secondary'
 export type HeadingProps = {
   children: React.ReactNode
   color?: 'white' | 'black'
-  lineLeft?: boolean
-  lineBottom?: boolean
-  lineColor?: LineColors
+  $lineLeft?: boolean
+  $lineBottom?: boolean
+  $lineColor?: LineColors
   size?: 'small' | 'medium'
 }
 
 const Heading = ({
   children,
   color = 'black',
-  lineLeft = false,
-  lineBottom = false,
-  lineColor = 'primary',
+  $lineLeft = false,
+  $lineBottom = false,
+  $lineColor = 'primary',
   size = 'medium'
 }: HeadingProps) => {
   return (
     <S.Wrapper
       color={color}
-      lineLeft={lineLeft}
-      lineBottom={lineBottom}
-      lineColor={lineColor}
+      $lineLeft={$lineLeft}
+      $lineBottom={$lineBottom}
+      $lineColor={$lineColor}
       size={size}
     >
       {children}
