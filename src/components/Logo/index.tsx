@@ -3,16 +3,16 @@ import * as S from './styles'
 export type LogoProps = {
   color?: 'white' | 'black' | 'alternative'
   size?: 'normal' | 'large'
-  hideonmobile?: boolean
+  $hideonmobile?: boolean
 }
 
 const Logo = ({
   color = 'white',
   size = 'normal',
-  hideonmobile = false
+  $hideonmobile = false
 }: LogoProps) => {
   return (
-    <S.Wrapper color={color} size={size} hideonmobile={hideonmobile}>
+    <S.Wrapper color={color} size={size} $hideonmobile={$hideonmobile}>
       <svg
         viewBox="0 0 234 42"
         fill="none"

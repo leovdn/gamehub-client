@@ -80,11 +80,11 @@ export const MenuLink = styled.a`
 `
 
 type MenuFullProps = {
-  isOpen: boolean
+  $isOpen: boolean
 }
 
 export const MenuFull = styled.nav<MenuFullProps>`
-  ${({ theme, isOpen }) => css`
+  ${({ theme, $isOpen }) => css`
     height: 100vh;
     position: absolute;
     top: 0;
@@ -98,8 +98,8 @@ export const MenuFull = styled.nav<MenuFullProps>`
 
     background: ${theme.colors.white};
     overflow: hidden;
-    pointer-events: ${isOpen ? 'all' : 'none'};
-    opacity: ${isOpen ? 1 : 0};
+    pointer-events: ${$isOpen ? 'all' : 'none'};
+    opacity: ${$isOpen ? 1 : 0};
     transition: opacity ease-in-out 0.2s;
 
     > svg {
@@ -129,12 +129,12 @@ export const MenuFull = styled.nav<MenuFullProps>`
 
       color: ${theme.colors.black};
 
-      transform: ${isOpen ? 'translateY(0)' : 'translateY(3rem)'};
+      transform: ${$isOpen ? 'translateY(0)' : 'translateY(3rem)'};
       transition: transform 0.2s ease-in-out;
     }
 
     ${RegisterBox} {
-      transform: ${isOpen ? 'translateY(0)' : 'translateY(3rem)'};
+      transform: ${$isOpen ? 'translateY(0)' : 'translateY(3rem)'};
       transition: transform 0.2s ease-in-out;
     }
   `}

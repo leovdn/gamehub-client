@@ -7,13 +7,13 @@ export default {
 } as Meta
 
 export const Desktop: StoryFn = (args) => (
-  <MediaMatch greaterThan="768px" {...args}>
+  <MediaMatch greaterthan="768px" {...args}>
     Only on Desktop
   </MediaMatch>
 )
 
 export const Mobile: StoryFn = (args) => (
-  <MediaMatch lessThan="768px" {...args}>
+  <MediaMatch lessthan="768px" {...args}>
     Only on Mobile
   </MediaMatch>
 )

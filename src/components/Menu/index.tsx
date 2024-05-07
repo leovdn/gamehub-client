@@ -16,21 +16,21 @@ export type MenuProps = {
 }
 
 const Menu = ({ username }: MenuProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [$isOpen, setIsOpen] = useState(false)
 
   return (
     <S.Wrapper>
-      <MediaMatch lessThan="768px">
+      <MediaMatch lessthan="768px">
         <S.IconWrapper onClick={() => setIsOpen(true)}>
           <MenuIcon aria-label="Open Menu" />
         </S.IconWrapper>
       </MediaMatch>
 
       <S.LogoWrapper>
-        <Logo hideonmobile color="alternative" size="large" />
+        <Logo $hideonmobile color="alternative" size="large" />
       </S.LogoWrapper>
 
-      <MediaMatch greaterThan="768px">
+      <MediaMatch greaterthan="768px">
         <S.MenuNav>
           <S.MenuLink href="#">Home</S.MenuLink>
           <S.MenuLink href="#">Explore</S.MenuLink>
@@ -47,13 +47,13 @@ const Menu = ({ username }: MenuProps) => {
         </S.IconWrapper>
 
         {!username && (
-          <MediaMatch greaterThan="768px">
+          <MediaMatch greaterthan="768px">
             <Button>Sign In</Button>
           </MediaMatch>
         )}
       </S.MenuGroup>
 
-      <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
+      <S.MenuFull aria-hidden={!$isOpen} $isOpen={$isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
         <S.MenuNav>
           <S.MenuLink href="#">Home</S.MenuLink>
@@ -69,7 +69,7 @@ const Menu = ({ username }: MenuProps) => {
 
         {!username && (
           <S.RegisterBox>
-            <Button fullWidth size="large">
+            <Button $fullwidth size="large">
               Log in now
             </Button>
             <span>or</span>

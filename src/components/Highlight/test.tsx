@@ -9,7 +9,7 @@ const props = {
   subtitle: 'Heading 2',
   buttonLabel: 'Buy now',
   buttonLink: '/games/default',
-  backgroundImage: '/img/hl-bg.png'
+  $backgroundImage: '/img/hl-bg.png'
 }
 
 describe('<Highlight />', () => {
@@ -31,7 +31,7 @@ describe('<Highlight />', () => {
     const { container } = renderWithTheme(<Highlight {...props} />)
 
     expect(container.firstChild).toHaveStyle({
-      backgroundImage: `url(${props.backgroundImage})`
+      backgroundImage: `url(${props.$backgroundImage})`
     })
   })
 
