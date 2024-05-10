@@ -6,12 +6,14 @@ import 'jest-styled-components'
 describe('<Logo />', () => {
   it('should render a white label by default', () => {
     //render the component with 'render' or a helper (renderWithTheme)
-    renderWithTheme(<Logo />)
+    const { container } = renderWithTheme(<Logo id="idTest" />)
     //select the element to be tested with 'screen' (queries)
     //expect --assertion to to render white logo
     expect(screen.getByLabelText(/GameHub/i).parentElement).toHaveStyle({
       color: '#fafafa'
     })
+
+    expect(container.querySelector('#paint_linear_idTest')).toBeInTheDocument()
   })
 
   it('should render a black label when color is passed', () => {
