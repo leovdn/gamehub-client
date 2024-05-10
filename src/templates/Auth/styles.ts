@@ -1,10 +1,15 @@
 import styled, { css } from 'styled-components'
 import * as HeadingStyles from 'components/Heading/styles'
+import * as LogoStyles from 'components/Logo/styles'
 
 export const Wrapper = styled.main`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   height: 100vh;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 export const BannerBlock = styled.div`
@@ -25,6 +30,10 @@ export const BannerBlock = styled.div`
       bottom: 0;
       background-color: ${theme.colors.mainBg};
       opacity: 0.84;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
     }
   `}
 `
@@ -67,14 +76,25 @@ export const Content = styled.div`
     align-items: center;
     justify-content: center;
     background: ${theme.colors.white};
-    padding: 14rem;
-
-    ${HeadingStyles.Wrapper} {
-      align-self: start;
-      margin-top: 6rem;
-      font-weight: 600;
-    }
   `}
+`
+
+export const ContentWrapper = styled.div`
+  width: 30rem;
+
+  @media (min-width: 768px) {
+    width: 40rem;
+  }
+
+  ${LogoStyles.Wrapper} {
+    margin: 0 auto;
+  }
+
+  ${HeadingStyles.Wrapper} {
+    align-self: start;
+    margin-top: 6rem;
+    font-weight: 600;
+  }
 `
 
 export const LoginForm = styled.form`
