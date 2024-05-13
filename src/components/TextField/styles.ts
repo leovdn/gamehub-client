@@ -56,7 +56,7 @@ export const Input = styled.input`
   ${({ theme }) => css`
     width: 100%;
     padding: ${theme.spacings.xxsmall} 0;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.small};
     font-family: ${theme.font.family};
 
     background: transparent;

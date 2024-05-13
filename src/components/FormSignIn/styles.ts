@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { darken } from 'polished'
 
 export const Wrapper = styled.main``
 
@@ -26,6 +27,10 @@ export const ForgotPassword = styled.span`
     a {
       color: ${theme.colors.black};
       text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   `}
 `
@@ -37,6 +42,16 @@ export const FormLink = styled.span`
 
     a {
       color: ${theme.colors.secondary};
+      text-decoration: none;
+      border-bottom: 0.1rem solid ${theme.colors.secondary};
+      transition:
+        color,
+        border ${theme.transition.fast};
+
+      &:hover {
+        border-bottom: 0.1rem solid ${darken(0.1, theme.colors.secondary)};
+        color: ${darken(0.1, theme.colors.secondary)};
+      }
     }
   `}
 `
