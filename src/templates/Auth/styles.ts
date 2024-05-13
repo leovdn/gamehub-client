@@ -96,37 +96,3 @@ export const ContentWrapper = styled.div`
     font-weight: 600;
   }
 `
-
-export const LoginForm = styled.form`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    margin-top: ${theme.spacings.large};
-    gap: ${theme.spacings.xxsmall};
-
-    span:first-of-type {
-      font-size: ${theme.font.sizes.xsmall};
-      text-align: end;
-
-      a {
-        color: ${theme.colors.black};
-        text-decoration: none;
-      }
-    }
-
-    span {
-      text-align: center;
-      font-size: ${theme.font.sizes.small};
-
-      a {
-        color: ${theme.colors.secondary};
-      }
-    }
-
-    button {
-      text-transform: uppercase;
-      margin-top: ${theme.spacings.small};
-    }
-  `}
-`
