@@ -48,6 +48,10 @@ export const BannerContent = styled.div`
 
     z-index: ${theme.layers.base};
     color: ${theme.colors.white};
+
+    a {
+      display: contents;
+    }
   `}
 `
 
@@ -94,5 +98,9 @@ export const ContentWrapper = styled.div`
     align-self: start;
     margin-top: 6rem;
     font-weight: 600;
+  }
+
+  a {
+    display: contents;
   }
 `
