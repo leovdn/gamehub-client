@@ -146,6 +146,10 @@ export const RegisterBox = styled.div`
     align-items: center;
     padding: 0 ${theme.spacings.xlarge} ${theme.spacings.xlarge};
 
+    a {
+      text-decoration: none;
+    }
+
     > span {
       display: block;
       margin: ${theme.spacings.xxsmall} 0;
@@ -154,7 +158,7 @@ export const RegisterBox = styled.div`
   `}
 `
 
-export const CreateAccount = styled.a`
+export const CreateAccount = styled.div`
   ${({ theme }) => css`
     text-decoration: none;
     color: ${theme.colors.primary};

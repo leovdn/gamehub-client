@@ -10,6 +10,7 @@ import * as S from './styles'
 import { useState } from 'react'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
+import Link from 'next/link'
 
 export type MenuProps = {
   username?: string
@@ -48,7 +49,9 @@ const Menu = ({ username }: MenuProps) => {
 
         {!username && (
           <MediaMatch greaterthan="768px">
-            <Button>Sign In</Button>
+            <Link href="/sign-in" passHref>
+              <Button>Sign In</Button>
+            </Link>
           </MediaMatch>
         )}
       </S.MenuGroup>
@@ -69,14 +72,16 @@ const Menu = ({ username }: MenuProps) => {
 
         {!username && (
           <S.RegisterBox>
-            <Button $fullwidth size="large">
-              Log in now
-            </Button>
+            <Link href="/sign-in">
+              <Button $fullwidth size="large">
+                Log in now
+              </Button>
+            </Link>
             <span>or</span>
 
-            <S.CreateAccount title="Sign up" href="#">
-              Sign up
-            </S.CreateAccount>
+            <Link href="/sign-up">
+              <S.CreateAccount title="Sign up">Sign up</S.CreateAccount>
+            </Link>
           </S.RegisterBox>
         )}
       </S.MenuFull>
