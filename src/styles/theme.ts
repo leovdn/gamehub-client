@@ -45,6 +45,12 @@ export default {
     xlarge: '4.8rem',
     xxlarge: '5.6rem'
   },
+  breakpoints: {
+    small: '450px',
+    medium: '768px',
+    large: '1170px',
+    xlarge: '1440px'
+  },
   layers: {
     base: 10,
     menu: 20,
