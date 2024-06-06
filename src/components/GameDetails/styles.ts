@@ -37,3 +37,17 @@ export const Description = styled.p`
     font-weight: ${theme.font.bold};
   `}
 `
+
+export const IconsWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    gap: ${theme.spacings.xxsmall};
+  `}
+`
+
+export const Icon = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+  `}
+`

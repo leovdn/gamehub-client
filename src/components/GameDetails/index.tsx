@@ -1,7 +1,20 @@
 import Heading from 'components/Heading'
+import { Apple, Windows, Linux } from 'styled-icons/fa-brands'
 import * as S from './styles'
 
-const GameDetails = () => {
+type Platform = 'windows' | 'mac' | 'linux'
+
+export type GameDetailsProps = {
+  platforms?: Platform[]
+}
+
+const GameDetails = ({ platforms }: GameDetailsProps) => {
+  const platformIcons = {
+    linux: <Linux title="Linux" size={18} />,
+    mac: <Apple title="Mac" size={18} />,
+    windows: <Windows title="Windows" size={18} />
+  }
+
   return (
     <S.Wrapper>
       <Heading $lineLeft color="white" $lineColor="secondary" size="medium">
@@ -31,7 +44,13 @@ const GameDetails = () => {
 
         <S.Block>
           <S.Title>Platforms</S.Title>
-          <S.Description>Windows, Mac, Linux</S.Description>
+          <S.Description>
+            <S.IconsWrapper>
+              {platforms?.map((platform: Platform) => (
+                <S.Icon key={platform}>{platformIcons[platform]}</S.Icon>
+              ))}
+            </S.IconsWrapper>
+          </S.Description>
         </S.Block>
 
         <S.Block>
