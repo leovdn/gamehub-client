@@ -1,4 +1,15 @@
+import { Container } from 'components/Container'
 import styled, { css } from 'styled-components'
+
+export const Main = styled.main`
+  ${({ theme }) => css`
+    margin-top: 20rem;
+
+    @media (min-width: ${theme.breakpoints.medium}) {
+      margin-top: 58rem;
+    }
+  `}
+`
 
 type CoverProps = {
   src: string
@@ -23,5 +34,22 @@ export const Cover = styled.div<CoverProps>`
       height: 70rem;
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
     }
+  `}
+`
+
+const Section = styled(Container).attrs({ as: 'section' })`
+  ${({ theme }) => css`
+    margin-bottom: ${theme.spacings.xlarge};
+
+    @media (min-width: ${theme.breakpoints.medium};) {
+      margin-bottom: calc(${theme.spacings.xlarge} * 2);
+    }
+  `}
+`
+
+export const SectionGameInfo = styled(Section)`
+  ${({ theme }) => css`
+    margin-top: calc(${theme.spacings.xxlarge} * 2);
+    position: relative;
   `}
 `
