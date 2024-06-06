@@ -5,7 +5,12 @@ export default {
   title: 'GameDetails',
   component: GameDetails,
   args: {
-    platforms: ['windows', 'mac', 'linux']
+    platforms: ['windows', 'mac', 'linux'],
+    developer: 'Rockstar Games',
+    releaseDate: '2020-11-21T11:00:00',
+    publisher: 'Rockstar Games',
+    rating: '4',
+    genres: ['Action']
   },
   argTypes: {
     platforms: {

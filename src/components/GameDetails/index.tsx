@@ -6,9 +6,17 @@ type Platform = 'windows' | 'mac' | 'linux'
 
 export type GameDetailsProps = {
   platforms?: Platform[]
+  developer: string
+  releaseDate: string
+  publisher: string
 }
 
-const GameDetails = ({ platforms }: GameDetailsProps) => {
+const GameDetails = ({
+  platforms,
+  developer,
+  releaseDate,
+  publisher
+}: GameDetailsProps) => {
   const platformIcons = {
     linux: <Linux title="Linux" size={18} />,
     mac: <Apple title="Mac" size={18} />,
@@ -24,22 +32,23 @@ const GameDetails = ({ platforms }: GameDetailsProps) => {
       <S.Content>
         <S.Block>
           <S.Title>Developer</S.Title>
-          <S.Description>Rockstar Games</S.Description>
+          <S.Description>{developer}</S.Description>
         </S.Block>
 
         <S.Block>
           <S.Title>Release Date</S.Title>
-          <S.Description>Nov 13, 2020</S.Description>
+          <S.Description>
+            {new Intl.DateTimeFormat('en-US', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric'
+            }).format(new Date(releaseDate))}
+          </S.Description>
         </S.Block>
 
         <S.Block>
           <S.Title>Publisher</S.Title>
-          <S.Description>Rockstar Games</S.Description>
-        </S.Block>
-
-        <S.Block>
-          <S.Title>Release Date</S.Title>
-          <S.Description>Nov 21, 2020</S.Description>
+          <S.Description>{publisher}</S.Description>
         </S.Block>
 
         <S.Block>
@@ -59,7 +68,7 @@ const GameDetails = ({ platforms }: GameDetailsProps) => {
         </S.Block>
 
         <S.Block>
-          <S.Title>Genre</S.Title>
+          <S.Title>Genres</S.Title>
           <S.Description>Action</S.Description>
         </S.Block>
       </S.Content>
