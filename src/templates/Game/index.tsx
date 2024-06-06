@@ -1,10 +1,10 @@
 import Base from 'templates/Base'
-// import * as S from './styles'
+import * as S from './styles'
 
 const Game = () => {
   return (
     <Base>
-      <h1>Game</h1>
+      <S.Cover src="/img/games/cyberpunk-2.jpg" role="img" aria-label="Cover" />
     </Base>
   )
 }
