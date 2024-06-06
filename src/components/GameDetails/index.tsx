@@ -59,13 +59,11 @@ const GameDetails = ({
 
         <S.Block>
           <S.Title>Platforms</S.Title>
-          <S.Description>
-            <S.IconsWrapper>
-              {platforms?.map((platform: Platform) => (
-                <S.Icon key={platform}>{platformIcons[platform]}</S.Icon>
-              ))}
-            </S.IconsWrapper>
-          </S.Description>
+          <S.IconsWrapper>
+            {platforms?.map((platform: Platform) => (
+              <S.Icon key={platform}>{platformIcons[platform]}</S.Icon>
+            ))}
+          </S.IconsWrapper>
         </S.Block>
 
         <S.Block>

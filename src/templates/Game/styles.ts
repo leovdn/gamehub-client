@@ -6,7 +6,7 @@ export const Main = styled.main`
     margin-top: 20rem;
 
     @media (min-width: ${theme.breakpoints.medium}) {
-      margin-top: 58rem;
+      margin-top: 38rem;
     }
   `}
 `
@@ -33,6 +33,14 @@ export const Cover = styled.div<CoverProps>`
     @media (min-width: ${theme.breakpoints.medium}) {
       height: 70rem;
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+      -webkit-mask-size: 300px;
+      -webkit-mask-image: -webkit-gradient(
+        linear,
+        center top,
+        center bottom,
+        color-stop(1, rgba(0, 0, 0, 0)),
+        color-stop(0, rgba(0, 0, 0, 1))
+      );
     }
   `}
 `
@@ -53,3 +61,17 @@ export const SectionGameInfo = styled(Section)`
     position: relative;
   `}
 `
+
+export const SectionDescription = styled(Section)`
+  ${({ theme }) => css`
+    hr {
+      opacity: 0.4;
+    }
+
+    .description__copyrights {
+      color: ${theme.colors.gray};
+    }
+  `}
+`
+
+export const SectionGameDetails = styled(Section)``
