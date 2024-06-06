@@ -1,45 +1,53 @@
 import styled, { css } from 'styled-components'
 
+import * as HeadingStyles from 'components/Heading/styles'
+
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    background-color: ${theme.colors.white};
-    padding: ${theme.spacings.small};
+    color: ${theme.colors.white};
+
+    @media (min-width: ${theme.breakpoints.medium}) {
+      background: ${theme.colors.white};
+      padding: ${theme.spacings.medium};
+      color: ${theme.colors.black};
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: ${theme.colors.white};
+      margin: ${theme.spacings.xsmall} 0;
+
+      ${HeadingStyles.wrapperModifiers.$lineLeft(theme, 'secondary')};
+
+      @media (min-width: ${theme.breakpoints.medium}) {
+        color: ${theme.colors.black};
+      }
+    }
 
     p {
-      font-size: 1.4rem;
-      margin-top: 1.4rem;
+      margin-bottom: ${theme.spacings.xsmall};
     }
 
-    @media (max-width: ${theme.breakpoints.small}) {
-      background: transparent;
-      color: ${theme.colors.white};
-      font-size: 1.2rem;
-      padding: ${theme.spacings.xxsmall};
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-
-      h2 {
-        color: ${theme.colors.white};
-      }
+    a {
+      color: ${theme.colors.primary};
     }
-  `}
-`
 
-export const About = styled.div`
-  ${({ theme }) => css`
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 20px;
+    img {
+      max-width: min(70rem, 100%);
+      margin-bottom: ${theme.spacings.xsmall};
+    }
 
-    @media (max-width: ${theme.breakpoints.small}) {
-      grid-template-columns: 1fr;
+    ul,
+    ol {
+      padding: ${theme.spacings.xsmall} ${theme.spacings.small};
+    }
+
+    hr {
+      margin: ${theme.spacings.small} 0;
     }
   `}
-`
-
-export const Description = styled.div`
-  margin-top: 3rem;
 `

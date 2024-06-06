@@ -1,39 +1,21 @@
 import Heading from 'components/Heading'
 import * as S from './styles'
-import Image from 'next/image'
 
 export type GameDescriptionProps = {
-  short_description: string
-  full_description: string
-  image: string
+  title?: string
+  content: string
 }
 
-const GameDescription = ({
-  full_description,
-  short_description,
-  image
-}: GameDescriptionProps) => {
+const GameDescription = ({ title, content }: GameDescriptionProps) => {
   return (
     <S.Wrapper>
-      <S.About>
-        <Image src={image} alt="game description" width={200} height={100} />
-
-        <div>
-          <Heading color="black" size="small" $lineLeft $lineColor="secondary">
-            About the Game
-          </Heading>
-
-          <p>{short_description}</p>
-        </div>
-      </S.About>
-
-      <S.Description>
-        <Heading color="black" size="small" $lineLeft $lineColor="secondary">
-          Learn More
+      {title && (
+        <Heading color="black" $lineLeft $lineColor="secondary">
+          {title}
         </Heading>
+      )}
 
-        <p>{full_description}</p>
-      </S.Description>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </S.Wrapper>
   )
 }
