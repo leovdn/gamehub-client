@@ -4,5 +4,5 @@ export default {
   publisher: 'Rockstar Games',
   platforms: ['windows', 'mac', 'linux'],
   rating: 'BR0',
-  genres: ['Action']
+  genres: ['Action', 'Role-playing', 'Narrative', 'Indie', 'Early Access']
 }
