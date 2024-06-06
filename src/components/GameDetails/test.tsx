@@ -7,9 +7,9 @@ const props: GameDetailsProps = {
   developer: 'Rockstar Games',
   releaseDate: '2020-11-21T11:00:00',
   platforms: ['windows', 'mac', 'linux'],
-  publisher: 'Rockstar Games'
-  // rating: '4',
-  // genres: ['Action']
+  publisher: 'Rockstar Games',
+  rating: 'BR0',
+  genres: ['Action', 'Role-playing', 'Narrative', 'Indie', 'Early Access']
 }
 
 describe('<GameDetails />', () => {
@@ -53,5 +53,25 @@ describe('<GameDetails />', () => {
     renderWithTheme(<GameDetails {...props} />)
 
     expect(screen.getByText('Nov 21, 2020')).toBeInTheDocument()
+  })
+
+  it('should render "free" rating when BR0', () => {
+    renderWithTheme(<GameDetails {...props} rating="BR0" />)
+
+    expect(screen.getByText(/free/i)).toBeInTheDocument()
+  })
+
+  it('should render "18+" rating when BR18', () => {
+    renderWithTheme(<GameDetails {...props} rating="BR18" />)
+
+    expect(screen.getByText(/18\+/i)).toBeInTheDocument()
+  })
+
+  it('should render the first 3 genres', () => {
+    renderWithTheme(<GameDetails {...props} />)
+
+    expect(
+      screen.getByText('Action / Role-playing / Narrative')
+    ).toBeInTheDocument()
   })
 })
