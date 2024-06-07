@@ -1,4 +1,6 @@
-const bannerSlideMockItems = [
+import { BannerProps } from 'components/Banner'
+
+const bannerSlideMockItems: BannerProps[] = [
   {
     img: 'https://images.unsplash.com/photo-1601987177651-8edfe6c20009?q=80&w=1470',
     title: 'Board Game 1',

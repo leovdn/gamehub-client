@@ -1,12 +1,12 @@
 import { screen } from '@testing-library/react'
 
-import Home from './index'
+import Home, { HomeTemplateProps } from './index'
 import { renderWithTheme } from 'utils/tests/helpers'
 import bannersMock from 'components/BannerSlider/mock'
 import gamecardMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
 
-const props = {
+const props: HomeTemplateProps = {
   banners: bannersMock,
   newGames: [gamecardMock[0]],
   mostPopularGames: [gamecardMock[0]],
