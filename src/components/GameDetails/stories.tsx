@@ -1,12 +1,12 @@
 import GameDetails, { GameDetailsProps } from '.'
 import { Meta, StoryFn } from '@storybook/react'
-import mockdata from './mock'
+import { gameDetailsMock } from './mock'
 
 export default {
   title: 'GameDetails',
   component: GameDetails,
   args: {
-    ...mockdata
+    ...gameDetailsMock
   },
   argTypes: {
     platforms: {
