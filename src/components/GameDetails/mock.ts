@@ -1,4 +1,6 @@
-export default {
+import { GameDetailsProps } from '.'
+
+export const gameDetailsMock: GameDetailsProps = {
   developer: 'Rockstar Games',
   releaseDate: 'Nov 13, 2020',
   publisher: 'Rockstar Games',
