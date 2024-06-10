@@ -5,6 +5,7 @@ import Heading from 'components/Heading'
 import Showcase from 'components/Showcase'
 import { HighlightProps } from 'components/Highlight'
 import * as S from './styles'
+import Empty from 'components/Empty'
 
 export type WishlistTemplateProps = {
   games?: GameCardProps[]
@@ -23,6 +24,14 @@ const WishlistTemplate = ({
         <Heading color="white" $lineLeft $lineColor="secondary">
           Wishlist
         </Heading>
+
+        {!games && (
+          <Empty
+            title="Your wishlist is empty"
+            description="Games added to wishlist will be listed here"
+            hasLink
+          />
+        )}
 
         <S.WishlistContent>
           {games &&
