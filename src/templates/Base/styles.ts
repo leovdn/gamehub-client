@@ -9,4 +9,5 @@ export const Wrapper = styled.section`
 
 export const Content = styled.div`
   flex: 1 0 auto;
+  margin-top: 5rem;
 `

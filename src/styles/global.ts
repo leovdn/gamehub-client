@@ -51,6 +51,13 @@ const GlobalStyles = createGlobalStyle`
       font-size: ${theme.font.sizes.medium};
       background-color: ${theme.colors.mainBg};
     }
+
+    hr {
+      margin: 7rem auto;
+      background-color: ${theme.colors.darkGray};
+      border: none;
+      height: 1px;
+    }
   `}
 
 `
