@@ -3,7 +3,7 @@ import GameDescription, { GameDescriptionProps } from '.'
 import { gameDescriptionMock } from './mock'
 
 export default {
-  title: 'GameDescription',
+  title: 'Game/GameDescription',
   component: GameDescription,
   args: gameDescriptionMock
 } as Meta

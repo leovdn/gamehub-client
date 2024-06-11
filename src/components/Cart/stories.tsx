@@ -3,7 +3,7 @@ import Cart, { CartItemsProps } from '.'
 import { Meta, StoryFn } from '@storybook/react'
 
 export default {
-  title: 'Cart',
+  title: 'Checkout/Cart',
   component: Cart,
   args: {
     total: 'R$ 430,00',

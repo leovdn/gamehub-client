@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react'
 import { gameDetailsMock } from './mock'
 
 export default {
-  title: 'GameDetails',
+  title: 'Game/GameDetails',
   component: GameDetails,
   args: {
     ...gameDetailsMock
