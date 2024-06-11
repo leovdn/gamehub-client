@@ -1,4 +1,3 @@
-import { Container } from 'components/Container'
 import * as S from './styles'
 import Heading from 'components/Heading'
 import Highlight, { HighlightProps } from 'components/Highlight'
@@ -14,15 +13,13 @@ export type ShowcaseProps = {
 const Showcase = ({ games, highlight, title }: ShowcaseProps) => {
   return (
     <S.Wrapper>
-      <Container>
-        <Heading $lineColor="secondary" $lineLeft color="white">
-          {title && title}
-        </Heading>
+      <Heading $lineColor="secondary" $lineLeft color="white">
+        {title && title}
+      </Heading>
 
-        {highlight && <Highlight {...highlight} />}
+      {highlight && <Highlight {...highlight} />}
 
-        {games && <GameCardSlider items={games} />}
-      </Container>
+      {games && <GameCardSlider items={games} />}
     </S.Wrapper>
   )
 }
