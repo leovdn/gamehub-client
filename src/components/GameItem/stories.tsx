@@ -11,8 +11,7 @@ export const Basic: StoryFn<GameItemProps> = (args) => (
     style={{
       maxWidth: '300rem',
       margin: '0 auto',
-      background: '#fafafa',
-      padding: '2rem'
+      background: '#fafafa'
     }}
   >
     <GameItem {...args} />
@@ -24,5 +23,10 @@ Basic.args = {
   price: 'R$ 215,00',
   image: 'img/gamecard-img.png',
   downloadLink: 'test',
-  payment: '3213141'
+  payment: {
+    cardNumber: '1234 1234 1234 1234',
+    cardFlag: 'visa',
+    purchaseDate: '2022-07-20 21:34',
+    img: 'img/master.svg'
+  }
 }

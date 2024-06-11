@@ -1,44 +1,66 @@
 import Image from 'next/image'
-import { Download } from 'styled-icons/material-outlined'
+import { Download } from 'styled-icons/boxicons-solid'
 import * as S from './styles'
+
+export type PaymentInfoProps = {
+  cardNumber: string
+  cardFlag: string
+  img: string
+  purchaseDate: string
+}
 
 export type GameItemProps = {
   title: string
   price: string
   image: string
   downloadLink?: string
-  payment?: string
+  payment?: PaymentInfoProps
 }
 
 const GameItem = ({
-  title = 'test',
+  title,
   price,
-  image = 'img/gamecard-img.png',
+  image,
   downloadLink,
   payment
 }: GameItemProps) => {
   return (
     <S.Wrapper>
-      <Image src={image} alt={title} width={200} height={90} />
+      <S.GameContent>
+        <S.ImageBox>
+          <Image src={image} alt={title} width={300} height={140} />
+        </S.ImageBox>
+        <S.Content>
+          <S.Title>
+            {title}
+            {!!downloadLink && (
+              <S.DownloadLink
+                href={downloadLink}
+                target="_blank"
+                aria-label={`Get ${title} here`}
+              >
+                <Download size={22} />
+              </S.DownloadLink>
+            )}
+          </S.Title>
+          <S.Price>{price}</S.Price>
+        </S.Content>
+      </S.GameContent>
 
-      <S.GameData>
-        <S.Title>
-          {title}
-          {downloadLink && (
-            <S.DownloadLink onClick={() => alert(downloadLink)}>
-              <Download size={24} aria-label="Download Payment Info" />
-            </S.DownloadLink>
-          )}
-        </S.Title>
+      {!!payment && (
+        <S.PaymentContent>
+          <p>Purchase made in {payment.purchaseDate}</p>
 
-        <S.GamePrice>{price}</S.GamePrice>
-      </S.GameData>
-
-      {payment && (
-        <S.PaymentData>
-          <p>{payment}</p>
-          <p>Purchase made in 20/07/2022 at 21:34</p>
-        </S.PaymentData>
+          <S.CardInfo>
+            <span>{payment.cardNumber}</span>
+            <Image
+              src={payment.img}
+              alt={payment.cardFlag}
+              width={30}
+              height={30}
+            />
+          </S.CardInfo>
+        </S.PaymentContent>
       )}
     </S.Wrapper>
   )
