@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
     padding: ${theme.spacings.small};
     border-bottom: 0.1rem solid ${theme.colors.lightGray};
 
+    &:last-of-type {
+      border-bottom: none;
+    }
+
     @media (min-width: ${theme.breakpoints.medium}) {
       display: flex;
     }
