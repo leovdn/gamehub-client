@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { DefaultTheme, css } from 'styled-components'
 
 export const Nav = styled.nav`
   ${({ theme }) => css`
@@ -9,12 +9,38 @@ export const Nav = styled.nav`
 
     a {
       text-decoration: none;
+      border-bottom: 0.1rem solid rgba(0, 0, 0, 0.02);
+    }
+
+    @media (max-width: ${theme.breakpoints.small}) {
+      flex-direction: row;
+      justify-content: space-between;
+
+      a {
+        border-bottom: none;
+      }
     }
   `}
 `
 
-export const LinkItem = styled.a`
-  ${({ theme }) => css`
+const linkModifiers = {
+  default: (theme: DefaultTheme) => css`
+    background: ${theme.colors.white};
+    color: ${theme.colors.black};
+  `,
+
+  active: (theme: DefaultTheme) => css`
+    background: ${theme.colors.primary};
+    color: ${theme.colors.white};
+  `
+}
+
+type LinkItemProps = {
+  isActive?: boolean
+}
+
+export const LinkItem = styled.a<LinkItemProps>`
+  ${({ theme, isActive }) => css`
     display: flex;
     align-items: center;
     gap: ${theme.spacings.xxsmall};
@@ -22,12 +48,20 @@ export const LinkItem = styled.a`
     font-size: ${theme.font.sizes.small};
     color: ${theme.colors.black};
     text-decoration: none;
-    text-decoration: none;
-    color: ${theme.colors.black};
+    background: ${theme.colors.white};
 
     &:hover {
       color: ${theme.colors.white};
-      background-color: ${theme.colors.primary};
+      background: ${theme.colors.primary};
     }
+
+    @media (max-width: ${theme.breakpoints.small}) {
+      span {
+        display: none;
+      }
+    }
+
+    ${!isActive && linkModifiers.default(theme)}
+    ${isActive && linkModifiers.active(theme)}
   `}
 `
