@@ -5,7 +5,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 
 describe('<ProfileForm />', () => {
   it('should render the profile form', () => {
-    renderWithTheme(<ProfileForm title="My Profile" />)
+    renderWithTheme(<ProfileForm />)
 
     expect(
       screen.getByRole('heading', { name: /My Profile/i })
