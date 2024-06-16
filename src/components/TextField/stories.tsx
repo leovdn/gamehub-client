@@ -7,8 +7,7 @@ export default {
   component: TextField,
   args: {
     label: 'Email',
-    labelFor: 'Email',
-    id: 'Email',
+    name: 'email',
     initialValue: '',
     placeholder: 'leo.vdn@gmail.com',
     icon: <Email />

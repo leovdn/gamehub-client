@@ -7,7 +7,7 @@ import { Email } from 'styled-icons/material-outlined'
 
 describe('<TextField />', () => {
   it('should render the text input', () => {
-    renderWithTheme(<TextField label="TextField" labelFor="TextField" />)
+    renderWithTheme(<TextField label="TextField" name="TextField" />)
 
     expect(screen.getByLabelText('TextField')).toBeInTheDocument()
     expect(screen.getByText('TextField')).toHaveAttribute('for', 'TextField')
@@ -21,7 +21,7 @@ describe('<TextField />', () => {
 
   it('should render with the Placeholder', () => {
     renderWithTheme(
-      <TextField label="TextField" labelFor="TextField" placeholder="testing" />
+      <TextField label="TextField" name="TextField" placeholder="testing" />
     )
 
     expect(screen.getByPlaceholderText('testing')).toBeInTheDocument()
@@ -29,7 +29,7 @@ describe('<TextField />', () => {
 
   it('should render the text input values', () => {
     renderWithTheme(
-      <TextField label="TextField" labelFor="TextField" initialValue="test" />
+      <TextField label="TextField" name="TextField" initialValue="test" />
     )
 
     expect(screen.getByDisplayValue('test')).toBeInTheDocument()
@@ -39,12 +39,7 @@ describe('<TextField />', () => {
     const onInput = jest.fn()
 
     renderWithTheme(
-      <TextField
-        label="TextField"
-        labelFor="TextField"
-        id="TextField"
-        onInput={onInput}
-      />
+      <TextField label="TextField" name="TextField" onInput={onInput} />
     )
 
     const input = screen.getByLabelText('TextField')
@@ -63,7 +58,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
       />
     )
@@ -75,7 +70,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
         iconPosition="right"
       />
@@ -90,8 +85,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         onInput={onInput}
         disabled
       />
@@ -111,8 +105,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         onInput={onInput}
         error="Error message"
       />
