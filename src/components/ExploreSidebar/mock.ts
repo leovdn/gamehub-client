@@ -13,7 +13,7 @@ export default [
   },
   {
     title: 'Sort by',
-    name: 'sort-by',
+    name: 'sort_by',
     type: 'radio',
     fields: [
       { name: 'high-to-low', label: 'Price: high to low' },
