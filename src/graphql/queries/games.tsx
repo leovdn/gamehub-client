@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import { gql } from 'graphql/generated'
 
-export const QUERY_GAMES = gql`
-  query QueryGames {
-    games {
+export const QUERY_GAMES = gql(`
+  query QueryGames($pagination: PaginationArg) {
+    games(pagination: $pagination) {
       data {
         id
         attributes {
@@ -36,4 +36,4 @@ export const QUERY_GAMES = gql`
       }
     }
   }
-`
+`)
