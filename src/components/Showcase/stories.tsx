@@ -29,18 +29,14 @@ Default.args = {
   games: gameCardSliderMockItems
 }
 
-export const WithoutHighlight: StoryFn<ShowcaseProps> = (args) => (
-  <Showcase {...args} />
-)
+export const WithoutHighlight: StoryFn<ShowcaseProps> = (args) => <Showcase {...args} />
 
 WithoutHighlight.args = {
   title: 'Most Populars',
   games: gameCardSliderMockItems
 }
 
-export const WithoutGames: StoryFn<ShowcaseProps> = (args) => (
-  <Showcase {...args} />
-)
+export const WithoutGames: StoryFn<ShowcaseProps> = (args) => <Showcase {...args} />
 
 WithoutGames.args = {
   title: 'Most Populars',

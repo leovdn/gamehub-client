@@ -18,6 +18,4 @@ export default {
   }
 } as Meta
 
-export const Basic: StoryFn<GameDetailsProps> = (args) => (
-  <GameDetails {...args} />
-)
+export const Basic: StoryFn<GameDetailsProps> = (args) => <GameDetails {...args} />

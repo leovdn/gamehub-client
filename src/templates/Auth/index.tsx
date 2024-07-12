@@ -23,8 +23,7 @@ const Auth = ({ title, children }: AuthProps) => {
             </Heading>
 
             <S.Subtitle>
-              <strong>GameHub</strong> is the best and most complete gaming
-              platform
+              <strong>GameHub</strong> is the best and most complete gaming platform
             </S.Subtitle>
           </div>
 

@@ -29,9 +29,7 @@ describe('<GameItem />', () => {
   it('should render the GameItem with image, title and price', () => {
     renderWithTheme(<GameItem {...props} />)
 
-    expect(
-      screen.getByRole('heading', { name: props.title })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: props.title })).toBeInTheDocument()
 
     expect(
       screen.getByRole('img', {
@@ -45,9 +43,10 @@ describe('<GameItem />', () => {
   it('should render the download link', () => {
     renderWithTheme(<GameItem {...props} downloadLink="/test" />)
 
-    expect(
-      screen.getByRole('link', { name: `Get ${props.title} here` })
-    ).toHaveAttribute('href', '/test')
+    expect(screen.getByRole('link', { name: `Get ${props.title} here` })).toHaveAttribute(
+      'href',
+      '/test'
+    )
   })
 
   it('should render the payment info', () => {

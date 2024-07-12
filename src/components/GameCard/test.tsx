@@ -24,18 +24,11 @@ describe('<GameCard />', () => {
   it('should render correctly', () => {
     renderWithTheme(<GameCard {...props} />)
 
-    expect(
-      screen.getByRole('heading', { name: props.title })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: props.title })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: props.developer })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: props.developer })).toBeInTheDocument()
 
-    expect(screen.getByRole('img', { name: props.title })).toHaveAttribute(
-      'src',
-      props.img
-    )
+    expect(screen.getByRole('img', { name: props.title })).toHaveAttribute('src', props.img)
     expect(screen.getByText(props.price)).toBeInTheDocument()
 
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument()
@@ -89,12 +82,7 @@ describe('<GameCard />', () => {
 
   it('should render a Ribbon', () => {
     renderWithTheme(
-      <GameCard
-        {...props}
-        ribbon="My Ribbon"
-        ribbonColor="secondary"
-        ribbonSize="small"
-      />
+      <GameCard {...props} ribbon="My Ribbon" ribbonColor="secondary" ribbonSize="small" />
     )
 
     const ribbon = screen.getByText(/My Ribbon/i)

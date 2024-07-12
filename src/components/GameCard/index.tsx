@@ -1,10 +1,6 @@
 import Image from 'next/image'
 import * as S from './styles'
-import {
-  AddShoppingCart,
-  Favorite,
-  FavoriteBorder
-} from 'styled-icons/material-outlined'
+import { AddShoppingCart, Favorite, FavoriteBorder } from 'styled-icons/material-outlined'
 import Button from 'components/Button'
 import Ribbon from 'components/Ribbon'
 

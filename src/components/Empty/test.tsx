@@ -13,14 +13,10 @@ describe('<Empty />', () => {
     renderWithTheme(<Empty {...props} hasLink />)
 
     expect(screen.getByRole('img', { name: /not found/i })).toBeInTheDocument()
-    expect(
-      screen.getByRole('heading', { name: /Content not found/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Content not found/i })).toBeInTheDocument()
 
     expect(screen.getByText(/Empty description/i)).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('link', { name: /back to store/i })
-    ).toHaveAttribute('href', '/')
+    expect(screen.getByRole('link', { name: /back to store/i })).toHaveAttribute('href', '/')
   })
 })

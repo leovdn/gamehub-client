@@ -16,25 +16,15 @@ describe('<GameDetails />', () => {
   it('should render the game detail blocks', () => {
     renderWithTheme(<GameDetails {...props} />)
 
-    expect(
-      screen.getByRole('heading', { name: /Game Details/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Game Details/i })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: /Developer/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Developer/i })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: /Release Date/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Release Date/i })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: /Platforms/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Platforms/i })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: /Publisher/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Publisher/i })).toBeInTheDocument()
 
     expect(screen.getByRole('heading', { name: /Rating/i })).toBeInTheDocument()
 
@@ -70,8 +60,6 @@ describe('<GameDetails />', () => {
   it('should render the first 3 genres', () => {
     renderWithTheme(<GameDetails {...props} />)
 
-    expect(
-      screen.getByText('Action / Role-playing / Narrative')
-    ).toBeInTheDocument()
+    expect(screen.getByText('Action / Role-playing / Narrative')).toBeInTheDocument()
   })
 })

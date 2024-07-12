@@ -33,9 +33,7 @@ describe('<Wishlist />', () => {
   it('should render the heading', () => {
     renderWithTheme(<Wishlist {...props} />)
 
-    expect(
-      screen.getByRole('heading', { name: /Wishlist/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Wishlist/i })).toBeInTheDocument()
 
     expect(screen.getAllByTestId('GameCard Mock')).toHaveLength(5)
     expect(screen.getAllByTestId('Showcase Mock')).toHaveLength(1)

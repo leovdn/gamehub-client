@@ -9,12 +9,7 @@ const Footer = () => {
       <Logo color="alternative" />
       <S.Content>
         <S.Colunm>
-          <Heading
-            color="black"
-            size="small"
-            $lineColor="secondary"
-            $lineBottom
-          >
+          <Heading color="black" size="small" $lineColor="secondary" $lineBottom>
             Contact
           </Heading>
 
@@ -22,12 +17,7 @@ const Footer = () => {
         </S.Colunm>
 
         <S.Colunm>
-          <Heading
-            color="black"
-            size="small"
-            $lineColor="secondary"
-            $lineBottom
-          >
+          <Heading color="black" size="small" $lineColor="secondary" $lineBottom>
             Follow Us
           </Heading>
 
@@ -51,12 +41,7 @@ const Footer = () => {
         </S.Colunm>
 
         <S.Colunm>
-          <Heading
-            color="black"
-            size="small"
-            $lineColor="secondary"
-            $lineBottom
-          >
+          <Heading color="black" size="small" $lineColor="secondary" $lineBottom>
             Links
           </Heading>
 
@@ -70,12 +55,7 @@ const Footer = () => {
         </S.Colunm>
 
         <S.Colunm>
-          <Heading
-            color="black"
-            size="small"
-            $lineColor="secondary"
-            $lineBottom
-          >
+          <Heading color="black" size="small" $lineColor="secondary" $lineBottom>
             Location
           </Heading>
 

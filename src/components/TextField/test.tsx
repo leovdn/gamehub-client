@@ -20,17 +20,13 @@ describe('<TextField />', () => {
   })
 
   it('should render with the Placeholder', () => {
-    renderWithTheme(
-      <TextField label="TextField" name="TextField" placeholder="testing" />
-    )
+    renderWithTheme(<TextField label="TextField" name="TextField" placeholder="testing" />)
 
     expect(screen.getByPlaceholderText('testing')).toBeInTheDocument()
   })
 
   it('should render the text input values', () => {
-    renderWithTheme(
-      <TextField label="TextField" name="TextField" initialValue="test" />
-    )
+    renderWithTheme(<TextField label="TextField" name="TextField" initialValue="test" />)
 
     expect(screen.getByDisplayValue('test')).toBeInTheDocument()
   })
@@ -38,9 +34,7 @@ describe('<TextField />', () => {
   it('should dispatch textfield when text changes', async () => {
     const onInput = jest.fn()
 
-    renderWithTheme(
-      <TextField label="TextField" name="TextField" onInput={onInput} />
-    )
+    renderWithTheme(<TextField label="TextField" name="TextField" onInput={onInput} />)
 
     const input = screen.getByLabelText('TextField')
     const text = 'Mock text for testing purposes'
@@ -56,11 +50,7 @@ describe('<TextField />', () => {
 
   it('should render with icon', () => {
     renderWithTheme(
-      <TextField
-        label="TextField"
-        name="TextField"
-        icon={<Email data-testid="icon" />}
-      />
+      <TextField label="TextField" name="TextField" icon={<Email data-testid="icon" />} />
     )
 
     expect(screen.getByTestId('icon')).toBeInTheDocument()
@@ -82,14 +72,7 @@ describe('<TextField />', () => {
   it('should not change when disabled', async () => {
     const onInput = jest.fn()
 
-    renderWithTheme(
-      <TextField
-        label="TextField"
-        name="TextField"
-        onInput={onInput}
-        disabled
-      />
-    )
+    renderWithTheme(<TextField label="TextField" name="TextField" onInput={onInput} disabled />)
 
     const input = screen.getByLabelText('TextField')
     userEvent.type(input, 'test')
@@ -103,12 +86,7 @@ describe('<TextField />', () => {
   it('should run with error', async () => {
     const onInput = jest.fn()
     renderWithTheme(
-      <TextField
-        label="TextField"
-        name="TextField"
-        onInput={onInput}
-        error="Error message"
-      />
+      <TextField label="TextField" name="TextField" onInput={onInput} error="Error message" />
     )
 
     expect(screen.getByText('Error message')).toBeInTheDocument()
