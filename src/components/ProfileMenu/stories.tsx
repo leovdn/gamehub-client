@@ -6,6 +6,4 @@ export default {
   component: ProfileMenu
 } as Meta
 
-export const Basic: StoryFn<ProfileMenuProps> = (args) => (
-  <ProfileMenu {...args} />
-)
+export const Basic: StoryFn<ProfileMenuProps> = (args) => <ProfileMenu {...args} />

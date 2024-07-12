@@ -34,10 +34,7 @@ const WishlistTemplate = ({
         )}
 
         <S.WishlistContent>
-          {games &&
-            games.map((game) => (
-              <GameCard {...game} key={`wishlist-${game.title}`} />
-            ))}
+          {games && games.map((game) => <GameCard {...game} key={`wishlist-${game.title}`} />)}
         </S.WishlistContent>
       </Container>
 

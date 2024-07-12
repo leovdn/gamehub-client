@@ -39,19 +39,16 @@ const CheckoutTemplate = ({
         )}
         <S.Content>
           <CartItems items={cart.items} total={cart.total} />
-          <PaymentOptions
-            cards={cards}
-            handlePayment={() => console.log('Buy')}
-          />
+          <PaymentOptions cards={cards} handlePayment={() => console.log('Buy')} />
         </S.Content>
 
         <S.Info>
           <Info size={16} />
-          Your purchase is protected by a secure connection from the GameHub
-          platform. By purchasing from our store, you accept and agree to our
-          <span> terms of use</span>. After the purchase, you have the right to
-          return within a maximum of 30 days, without any additional cost,
-          provided that the game download did not occur after your purchase.
+          Your purchase is protected by a secure connection from the GameHub platform. By purchasing
+          from our store, you accept and agree to our
+          <span> terms of use</span>. After the purchase, you have the right to return within a
+          maximum of 30 days, without any additional cost, provided that the game download did not
+          occur after your purchase.
         </S.Info>
       </Container>
 

@@ -12,18 +12,14 @@ describe('<GameDescription />', () => {
   it('should render the title and content', () => {
     renderWithTheme(<GameDescription {...props} />)
 
-    expect(
-      screen.getByRole('heading', { name: /Description/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Description/i })).toBeInTheDocument()
     expect(screen.getByText(/Description content/i)).toBeInTheDocument()
   })
 
   it('should render without title', () => {
     renderWithTheme(<GameDescription content={props.content} />)
 
-    expect(
-      screen.queryByRole('heading', { name: /Description/i })
-    ).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /Description/i })).not.toBeInTheDocument()
   })
 
   it('should render the title and content', () => {

@@ -29,10 +29,7 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
       </Link>
 
       <Link href="/profile/orders" passHref>
-        <S.LinkItem
-          isActive={activeLink === '/profile/orders'}
-          title="My Orders"
-        >
+        <S.LinkItem isActive={activeLink === '/profile/orders'} title="My Orders">
           <FormatListBulleted size={24} />
           <span>My Orders</span>
         </S.LinkItem>

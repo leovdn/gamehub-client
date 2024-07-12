@@ -38,8 +38,6 @@ describe('<BannerSlider />', () => {
       screen.getByRole('heading', { name: /Board Game 1/i, hidden: false })
     ).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: /Board Game 2/i, hidden: true })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Board Game 2/i, hidden: true })).toBeInTheDocument()
   })
 })

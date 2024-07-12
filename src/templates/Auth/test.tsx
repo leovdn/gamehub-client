@@ -13,9 +13,7 @@ describe('<Auth />', () => {
 
     expect(screen.getAllByRole('img', { name: /gamehub/i })).toHaveLength(2)
 
-    expect(
-      screen.getByRole('heading', { name: /AuthTest/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /AuthTest/i })).toBeInTheDocument()
 
     expect(
       screen.getByRole('heading', {

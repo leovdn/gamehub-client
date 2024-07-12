@@ -1,9 +1,7 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import * as S from './styles'
 
-type ButtonTypes =
-  | AnchorHTMLAttributes<HTMLAnchorElement>
-  | ButtonHTMLAttributes<HTMLButtonElement>
+type ButtonTypes = AnchorHTMLAttributes<HTMLAnchorElement> | ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
@@ -22,13 +20,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <S.Wrapper
-      size={size}
-      $fullwidth={$fullwidth}
-      $hasIcon={!!icon}
-      minimal={minimal}
-      {...props}
-    >
+    <S.Wrapper size={size} $fullwidth={$fullwidth} $hasIcon={!!icon} minimal={minimal} {...props}>
       {icon}
       {!!children && <span>{children}</span>}
     </S.Wrapper>

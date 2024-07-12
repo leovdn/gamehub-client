@@ -39,12 +39,8 @@ describe('<Logo />', () => {
 
   it('should render a bigger logo without text on mobile if hideonmobile', () => {
     renderWithTheme(<Logo size="large" $hideonmobile />)
-    expect(screen.getByLabelText(/GameHub/i).parentElement).toHaveStyleRule(
-      'width',
-      '5.8rem',
-      {
-        media: '(max-width: 600px)'
-      }
-    )
+    expect(screen.getByLabelText(/GameHub/i).parentElement).toHaveStyleRule('width', '5.8rem', {
+      media: '(max-width: 600px)'
+    })
   })
 })

@@ -48,9 +48,7 @@ describe('<GameCardSlider />', () => {
     expect(container.querySelectorAll('.slick-slide')).toHaveLength(5)
     expect(container.querySelectorAll('.slick-active')).toHaveLength(4)
 
-    expect(
-      screen.getAllByRole('heading', { name: /Population Zero/i, hidden: true })
-    )
+    expect(screen.getAllByRole('heading', { name: /Population Zero/i, hidden: true }))
     expect(
       screen.getAllByRole('heading', {
         name: /Population Zero 2/i,

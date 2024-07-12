@@ -14,9 +14,7 @@ describe('<GameInfo />', () => {
     renderWithTheme(<GameInfo {...props} />)
 
     // expect title
-    expect(
-      screen.getByRole('heading', { name: `${props.title}` })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: `${props.title}` })).toBeInTheDocument()
 
     //expect description
     expect(screen.getByText(`${props.description}`)).toBeInTheDocument()
@@ -28,9 +26,7 @@ describe('<GameInfo />', () => {
   it('should render buttons', () => {
     renderWithTheme(<GameInfo {...props} />)
 
-    expect(
-      screen.getByRole('button', { name: /add to cart/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /add to cart/i })).toBeInTheDocument()
 
     expect(
       screen.getByRole('button', {

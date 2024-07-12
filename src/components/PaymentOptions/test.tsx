@@ -13,9 +13,7 @@ describe('<PaymentOptions />', () => {
   it('should render the saved cards and add New card', () => {
     renderWithTheme(<PaymentOptions {...props} handlePayment={jest.fn} />)
 
-    expect(
-      screen.getByRole('heading', { name: /Payment/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Payment/i })).toBeInTheDocument()
 
     expect(screen.getByRole('img', { name: /Mastercard/i })).toBeInTheDocument()
     expect(screen.getByText(/4242/i)).toBeInTheDocument()

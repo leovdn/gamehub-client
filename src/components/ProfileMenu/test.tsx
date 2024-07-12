@@ -7,10 +7,7 @@ describe('<ProfileMenu />', () => {
   it('should render the profile menu', () => {
     renderWithTheme(<ProfileMenu />)
 
-    expect(screen.getByRole('link', { name: /my profile/i })).toHaveAttribute(
-      'href',
-      '/profile/me'
-    )
+    expect(screen.getByRole('link', { name: /my profile/i })).toHaveAttribute('href', '/profile/me')
 
     expect(screen.getByRole('link', { name: /My cards/i })).toHaveAttribute(
       'href',
@@ -22,9 +19,6 @@ describe('<ProfileMenu />', () => {
       '/profile/orders'
     )
 
-    expect(screen.getByRole('link', { name: /sign out/i })).toHaveAttribute(
-      'href',
-      '/logout'
-    )
+    expect(screen.getByRole('link', { name: /sign out/i })).toHaveAttribute('href', '/logout')
   })
 })

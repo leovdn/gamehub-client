@@ -31,12 +31,7 @@ const PaymentOptions = ({ cards, handlePayment }: PaymentOptionsProps) => {
           {cards?.map((card) => (
             <S.CardItem key={card.number}>
               <S.CardInfo>
-                <Image
-                  src="/img/master.svg"
-                  alt={card.flag}
-                  width={40}
-                  height={25}
-                />
+                <Image src="/img/master.svg" alt={card.flag} width={40} height={25} />
                 {card.number}
               </S.CardInfo>
 
@@ -61,11 +56,7 @@ const PaymentOptions = ({ cards, handlePayment }: PaymentOptionsProps) => {
           Continue Shopping
         </Button>
 
-        <Button
-          icon={<AddShoppingCart />}
-          disabled={!checked}
-          onClick={handlePayment}
-        >
+        <Button icon={<AddShoppingCart />} disabled={!checked} onClick={handlePayment}>
           Buy Now
         </Button>
       </S.Footer>

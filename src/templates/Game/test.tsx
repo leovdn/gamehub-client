@@ -66,13 +66,8 @@ describe('<Game />', () => {
   it('should render the cover image', () => {
     renderWithTheme(<Game {...props} />)
 
-    expect(screen.getByRole('img', { name: /cover/i })).toHaveAttribute(
-      'src',
-      'test.jpg'
-    )
+    expect(screen.getByRole('img', { name: /cover/i })).toHaveAttribute('src', 'test.jpg')
 
-    expect(screen.getByRole('img', { name: /cover/i })).toHaveStyle(
-      'height: 39.5rem'
-    )
+    expect(screen.getByRole('img', { name: /cover/i })).toHaveStyle('height: 39.5rem')
   })
 })

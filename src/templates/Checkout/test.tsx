@@ -40,8 +40,6 @@ describe('<Checkout />', () => {
   it('should render the cart section', () => {
     renderWithTheme(<Checkout {...props} />)
 
-    expect(
-      screen.getByRole('heading', { name: /My Cart/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /My Cart/i })).toBeInTheDocument()
   })
 })

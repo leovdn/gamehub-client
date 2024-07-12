@@ -11,9 +11,7 @@ describe('<FormSignUp />', () => {
     expect(screen.getByPlaceholderText(/Email/)).toBeInTheDocument()
     expect(screen.getByPlaceholderText('Password')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('Confirm Password')).toBeInTheDocument()
-    expect(
-      screen.getByRole('button', { name: /Create account/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Create account/i })).toBeInTheDocument()
   })
 
   it('should render the sign in link', () => {
