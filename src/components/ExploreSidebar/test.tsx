@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderWithTheme } from 'utils/tests/helpers'
 import { css } from 'styled-components'
@@ -46,73 +46,84 @@ describe('<ExploreSidebar />', () => {
     expect(screen.getByRole('radio', { name: /low to high/i })).toBeChecked()
   })
 
-  // it('should filter with initial values', () => {
-  //   const onFilter = jest.fn()
+  it('should filter with initial values', async () => {
+    const onFilter = jest.fn()
 
-  //   renderWithTheme(
-  //     <ExploreSidebar
-  //       items={items}
-  //       initialValues={{ windows: true, sort_by: 'low-to-high' }}
-  //       onFilter={onFilter}
-  //     />
-  //   )
+    renderWithTheme(
+      <ExploreSidebar
+        items={items}
+        initialValues={{ windows: true, sort_by: 'low-to-high' }}
+        onFilter={onFilter}
+      />
+    )
 
-  //   userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    await waitFor(() => {
+      expect(onFilter).toHaveBeenCalledTimes(1)
+    })
+    expect(onFilter).toHaveBeenCalledWith({ windows: true, sort_by: 'low-to-high' })
+  })
 
-  //   expect(onFilter).toHaveBeenCalledWith({ windows: true, sort_by: 'low-to-high' })
-  // })
+  it('should filter with checked values', async () => {
+    const onFilter = jest.fn()
 
-  // it('should filter with checked values', () => {
-  //   const onFilter = jest.fn()
+    renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />)
 
-  //   renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />)
+    userEvent.click(screen.getByLabelText(/windows/i))
+    userEvent.click(screen.getByLabelText(/linux/i))
+    userEvent.click(screen.getByLabelText(/low to high/i))
 
-  //   userEvent.click(screen.getByLabelText(/windows/i))
-  //   userEvent.click(screen.getByLabelText(/linux/i))
-  //   userEvent.click(screen.getByLabelText(/low to high/i))
+    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    await waitFor(() => {
+      expect(onFilter).toHaveBeenCalledTimes(1)
+    })
+    expect(onFilter).toHaveBeenCalledWith({
+      windows: true,
+      linux: true,
+      sort_by: 'low-to-high'
+    })
+  })
 
-  //   userEvent.click(screen.getByRole('button', { name: /filter/i }))
+  it('should altern between radio options', async () => {
+    const onFilter = jest.fn()
 
-  //   expect(onFilter).toHaveBeenCalledWith({
-  //     windows: true,
-  //     linux: true,
-  //     sort_by: 'low-to-high'
-  //   })
-  // })
+    renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />)
 
-  // it('should altern between radio options', () => {
-  //   const onFilter = jest.fn()
+    userEvent.click(screen.getByLabelText(/low to high/i))
+    userEvent.click(screen.getByLabelText(/high to low/i))
 
-  //   renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />)
+    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    await waitFor(() => {
+      expect(onFilter).toHaveBeenCalledTimes(1)
+    })
+    expect(onFilter).toHaveBeenCalledWith({ sort_by: 'high-to-low' })
+  })
 
-  //   userEvent.click(screen.getByLabelText(/low to high/i))
-  //   userEvent.click(screen.getByLabelText(/high to low/i))
+  it('should open/close sidebar when filtering on mobile ', async () => {
+    const { container } = renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
 
-  //   userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    const variant = {
+      media: '(max-width:768px)',
+      modifier: String(css`
+        ${Overlay}
+      `)
+    }
 
-  //   expect(onFilter).toHaveBeenCalledWith({ sort_by: 'high-to-low' })
-  // })
+    const Element = container.firstChild
 
-  // it('should open/close sidebar when filtering on mobile ', () => {
-  //   const { container } = renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
+    expect(Element).not.toHaveStyleRule('opacity', '1', variant)
 
-  //   const variant = {
-  //     media: '(max-width:768px)',
-  //     modifier: String(css`
-  //       ${Overlay}
-  //     `)
-  //   }
+    userEvent.click(screen.getByLabelText(/open filters/))
 
-  //   const Element = container.firstChild
+    await waitFor(() => {
+      expect(Element).toHaveStyleRule('opacity', '1', variant)
+    })
+    expect(Element).toHaveStyleRule('opacity', '1', variant)
 
-  //   expect(Element).not.toHaveStyleRule('opacity', '1', variant)
-
-  //   userEvent.click(screen.getByLabelText(/open filters/))
-
-  //   expect(Element).toHaveStyleRule('opacity', '1', variant)
-
-  //   userEvent.click(screen.getByLabelText(/close filters/))
-
-  //   expect(Element).not.toHaveStyleRule('opacity', '1', variant)
-  // })
+    userEvent.click(screen.getByLabelText(/close filters/))
+    await waitFor(() => {
+      expect(Element).not.toHaveStyleRule('opacity', '1', variant)
+    })
+    expect(Element).not.toHaveStyleRule('opacity', '1', variant)
+  })
 })
