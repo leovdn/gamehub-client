@@ -8,6 +8,4 @@ export default {
   args: gameDescriptionMock
 } as Meta
 
-export const Basic: StoryFn<GameDescriptionProps> = (args) => (
-  <GameDescription {...args} />
-)
+export const Basic: StoryFn<GameDescriptionProps> = (args) => <GameDescription {...args} />

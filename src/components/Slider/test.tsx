@@ -11,13 +11,9 @@ describe('<Slider />', () => {
       </Slider>
     )
 
-    expect(
-      screen.getByText(/Slider1/i).parentElement?.parentElement
-    ).toHaveClass('slick-slide')
+    expect(screen.getByText(/Slider1/i).parentElement?.parentElement).toHaveClass('slick-slide')
 
-    expect(
-      screen.getByText(/Slider2/i).parentElement?.parentElement
-    ).toHaveClass('slick-slide')
+    expect(screen.getByText(/Slider2/i).parentElement?.parentElement).toHaveClass('slick-slide')
 
     expect(container.firstChild).toMatchSnapshot()
   })

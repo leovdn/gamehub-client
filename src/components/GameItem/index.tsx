@@ -17,13 +17,7 @@ export type GameItemProps = {
   payment?: PaymentInfoProps
 }
 
-const GameItem = ({
-  title,
-  price,
-  image,
-  downloadLink,
-  payment
-}: GameItemProps) => {
+const GameItem = ({ title, price, image, downloadLink, payment }: GameItemProps) => {
   return (
     <S.Wrapper>
       <S.GameContent>
@@ -34,11 +28,7 @@ const GameItem = ({
           <S.Title>
             {title}
             {!!downloadLink && (
-              <S.DownloadLink
-                href={downloadLink}
-                target="_blank"
-                aria-label={`Get ${title} here`}
-              >
+              <S.DownloadLink href={downloadLink} target="_blank" aria-label={`Get ${title} here`}>
                 <Download size={22} />
               </S.DownloadLink>
             )}
@@ -53,12 +43,7 @@ const GameItem = ({
 
           <S.CardInfo>
             <span>{payment.cardNumber}</span>
-            <Image
-              src={payment.img}
-              alt={payment.cardFlag}
-              width={30}
-              height={30}
-            />
+            <Image src={payment.img} alt={payment.cardFlag} width={30} height={30} />
           </S.CardInfo>
         </S.PaymentContent>
       )}

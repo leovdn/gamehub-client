@@ -27,13 +27,7 @@ const RadioInput = ({
 
   return (
     <S.Wrapper>
-      <S.RadioButton
-        type="radio"
-        id={labelFor}
-        onChange={onChange}
-        value={value}
-        {...props}
-      />
+      <S.RadioButton type="radio" id={labelFor} onChange={onChange} value={value} {...props} />
 
       {label && (
         <S.Label htmlFor={labelFor} labelColor={labelColor}>

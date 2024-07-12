@@ -9,6 +9,4 @@ export default {
   component: Checkbox
 } as Meta
 
-export const Basic: StoryFn<CheckboxProps> = (args) => (
-  <Checkbox isChecked {...args} />
-)
+export const Basic: StoryFn<CheckboxProps> = (args) => <Checkbox isChecked {...args} />

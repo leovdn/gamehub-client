@@ -66,9 +66,6 @@ describe('<Button />', () => {
       </Button>
     )
 
-    expect(screen.getByRole('link', { name: /Buy Now/i })).toHaveAttribute(
-      'href',
-      '/link'
-    )
+    expect(screen.getByRole('link', { name: /Buy Now/i })).toHaveAttribute('href', '/link')
   })
 })

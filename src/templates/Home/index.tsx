@@ -44,22 +44,14 @@ const Home = ({
         <Showcase title="New Games" games={newGames} />
       </S.SectioNewGames>
 
-      <Showcase
-        title="Most Popular"
-        games={mostPopularGames}
-        highlight={mostPopularHighlight}
-      />
+      <Showcase title="Most Popular" games={mostPopularGames} highlight={mostPopularHighlight} />
 
       <S.SectionUpcoming>
         <Showcase title="Upcoming" games={upcomingMoreGames} />
         <Showcase games={upcomingGames} highlight={upcomingHighlight} />
       </S.SectionUpcoming>
 
-      <Showcase
-        title="Free Games"
-        highlight={freeHighlight}
-        games={freeGames}
-      />
+      <Showcase title="Free Games" highlight={freeHighlight} games={freeGames} />
     </Base>
   )
 }

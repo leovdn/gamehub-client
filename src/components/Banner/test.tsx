@@ -15,29 +15,18 @@ describe('<Banner />', () => {
   it('should render correctly', () => {
     const { container } = renderWithTheme(<Banner {...buttonProps} />)
 
-    expect(
-      screen.getByRole('heading', { name: /Banner Default/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Banner Default/i })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('heading', { name: /Play the new Game season/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Play the new Game season/i })).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('img', { name: /Banner Default/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /Banner Default/i })).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should render the Ribbon', () => {
     renderWithTheme(
-      <Banner
-        {...buttonProps}
-        ribbon="My Ribbon"
-        ribbonSize="small"
-        ribbonColor="secondary"
-      />
+      <Banner {...buttonProps} ribbon="My Ribbon" ribbonSize="small" ribbonColor="secondary" />
     )
 
     const ribbon = screen.getByText(/My Ribbon/i)

@@ -7,6 +7,18 @@ const nextConfig = {
   },
   experimental: {
     forceSwcTransforms: true
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337'
+      }
+    ]
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
   }
 }
 

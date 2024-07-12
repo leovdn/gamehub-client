@@ -11,9 +11,7 @@ export type CartItemsProps = {
 const CartItems = ({ items, total, modal }: CartItemsProps) => {
   return (
     <S.Wrapper>
-      <S.CartList>
-        {items?.map((item) => <GameItem key={item.title} {...item} />)}
-      </S.CartList>
+      <S.CartList>{items?.map((item) => <GameItem key={item.title} {...item} />)}</S.CartList>
 
       <S.Total modal={modal}>
         <span>Total:</span>

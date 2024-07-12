@@ -9,18 +9,8 @@ const FormSignIn = () => {
   return (
     <FormWrapper>
       <Form>
-        <TextField
-          type="email"
-          name="email"
-          placeholder="Email"
-          icon={<Email />}
-        />
-        <TextField
-          type="password"
-          name="password"
-          placeholder="Password"
-          icon={<Lock />}
-        />
+        <TextField type="email" name="email" placeholder="Email" icon={<Email />} />
+        <TextField type="password" name="password" placeholder="Password" icon={<Lock />} />
 
         <S.ForgotPassword>
           <Link href="/forgot-password">Forgot your password?</Link>
