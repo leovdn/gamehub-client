@@ -148,7 +148,7 @@ type WrapperProps = {
   isOpen: boolean
 }
 
-export const Wrapper = styled.div<WrapperProps>`
+export const Wrapper = styled.aside<WrapperProps>`
   ${({ theme, isOpen }) => css`
     @media (max-width: ${theme.breakpoints.medium}) {
       ${!!isOpen && wrapperModifiers.open(theme)}
