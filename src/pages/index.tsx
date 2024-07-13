@@ -19,7 +19,7 @@ export async function getStaticProps() {
     props: {
       revalidate: 10,
       banners: data?.banners?.data?.map((banner) => ({
-        img: `http://localhost:1337${banner?.attributes?.image?.data?.attributes?.url}`,
+        img: `${process.env.NEXT_PUBLIC_API_URL}${banner?.attributes?.image?.data?.attributes?.url}`,
         title: banner.attributes?.title,
         subtitle: banner.attributes?.subtitle,
         buttonLabel: banner.attributes?.button?.label,

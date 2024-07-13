@@ -4,9 +4,9 @@ export function formatUrl(url: string) {
 
 export function imageValidation(game: any) {
   if (game.attributes.cover.data) {
-    return `http://localhost:1337/${formatUrl(game.attributes.cover.data?.attributes.url)}`
+    return `${process.env.NEXT_PUBLIC_API_URL}/${formatUrl(game.attributes.cover.data?.attributes.url)}`
   } else {
-    return `http://localhost:1337/${formatUrl(game.attributes.gallery?.data[0]?.attributes.url)}`
+    return `${process.env.NEXT_PUBLIC_API_URL}/${formatUrl(game.attributes.gallery?.data[0]?.attributes.url)}`
   }
 }
 
