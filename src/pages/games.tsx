@@ -28,14 +28,23 @@ export async function getServerSideProps() {
     }
   }
 
+  function formatPrice(price: number) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    }).format(price)
+  }
+
   return {
     props: {
       revalidate: 60,
       games: data.games?.data.map((game) => ({
         title: game.attributes?.name,
         developer: game.attributes?.developers?.data[0].attributes?.name,
-        price: game.attributes?.price,
-        img: imageValidation(game)
+        price: formatPrice(game.attributes!.price),
+        img: imageValidation(game),
+        slug: game.attributes?.slug
       })),
       filterItems: filterItemsMock
     }

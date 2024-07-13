@@ -51,7 +51,12 @@ export const ImageBox = styled.div`
 `
 
 export const Info = styled.div`
-  max-width: calc(100% - 2.5rem);
+  max-width: calc(100% - 4.5rem);
+
+  a {
+    text-decoration: none;
+    background-color: red;
+  }
 `
 
 export const Title = styled.h3`

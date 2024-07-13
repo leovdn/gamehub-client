@@ -3,8 +3,10 @@ import * as S from './styles'
 import { AddShoppingCart, Favorite, FavoriteBorder } from 'styled-icons/material-outlined'
 import Button from 'components/Button'
 import Ribbon from 'components/Ribbon'
+import Link from 'next/link'
 
 export type GameCardProps = {
+  slug: string
   title: string
   developer: string
   img: string
@@ -18,6 +20,7 @@ export type GameCardProps = {
 }
 
 const GameCard = ({
+  slug,
   title,
   developer,
   img,
@@ -36,14 +39,19 @@ const GameCard = ({
           My Ribbon
         </Ribbon>
       )}
-      <S.ImageBox>
-        <Image src={img} alt={title} width={300} height={140} />
-      </S.ImageBox>
+
+      <Link href={`game/${slug}`} passHref>
+        <S.ImageBox>
+          <Image src={img} alt={title} width={300} height={140} />
+        </S.ImageBox>
+      </Link>
 
       <S.Content>
         <S.Info>
-          <S.Title>{title}</S.Title>
-          <S.Developer>{developer}</S.Developer>
+          <Link href={`game/${slug}`} passHref>
+            <S.Title>{title}</S.Title>
+            <S.Developer>{developer}</S.Developer>
+          </Link>
         </S.Info>
 
         <S.FavButton role="button" onClick={onFavorite}>
