@@ -49,9 +49,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   function imageValidation(game: any) {
     if (game.cover.data) {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${formatUrl(game?.cover.data?.attributes.src)}`
+      return `http://localhost:1337/${formatUrl(game?.cover.data?.attributes.src)}`
     } else {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${formatUrl(game?.gallery?.data[0]?.attributes.src)}`
+      return `http://localhost:1337/${formatUrl(game?.gallery?.data[0]?.attributes.src)}`
     }
   }
 

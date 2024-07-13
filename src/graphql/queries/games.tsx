@@ -1,7 +1,7 @@
 import { gql } from 'graphql/generated'
 
 export const QUERY_GAMES = gql(`
-  query QueryGames($pagination: PaginationArg) {
+  query GetGames($pagination: PaginationArg) {
     games(pagination: $pagination) {
       data {
         id
@@ -13,6 +13,7 @@ export const QUERY_GAMES = gql(`
           rating
           gallery {
             data {
+              id
               attributes {
                 url
               }
@@ -20,6 +21,7 @@ export const QUERY_GAMES = gql(`
           }
           cover {
             data {
+              id
               attributes {
                 url
               }
@@ -27,6 +29,7 @@ export const QUERY_GAMES = gql(`
           }
           developers {
             data {
+              id
               attributes {
                 name
               }
@@ -40,62 +43,68 @@ export const QUERY_GAMES = gql(`
 
 export const QUERY_GAME_BY_SLUG = gql(`
   query QueryGameBySlug($slug: String!) {
-  games(filters: { slug: { eq: $slug } }) {
-    data {
-      id
-      attributes {
-        name
-        short_description
-        description
-        price
-        rating
-        release_date
-        gallery {
-          data {
-            attributes {
-              src: url
-              label: alternativeText
+    games(filters: { slug: { eq: $slug } }) {
+      data {
+        id
+        attributes {
+          name
+          short_description
+          description
+          price
+          rating
+          release_date
+          gallery {
+            data {
+              id
+              attributes {
+                src: url
+                label: alternativeText
+              }
             }
           }
-        }
-        cover {
-          data {
-            attributes {
-              src: url
-              alternativeText
+          cover {
+            data {
+              id
+              attributes {
+                src: url
+                alternativeText
+              }
             }
           }
-        }
-        developers {
-          data {
-            attributes {
-              name
+          developers {
+            data {
+              id
+              attributes {
+                name
+              }
             }
           }
-        }
-        categories {
-          data {
-            attributes {
-              name
+          categories {
+            data {
+              id
+              attributes {
+                name
+              }
             }
           }
-        }
-        publisher {
-          data {
-            attributes {
-              name
+          publisher {
+            data {
+              id
+              attributes {
+                name
+              }
             }
           }
-        }
-        platforms {
-          data {
-            attributes {
-              name
+          platforms {
+            data {
+              id
+              attributes {
+                name
+              }
             }
           }
         }
       }
     }
   }
-}
 `)
