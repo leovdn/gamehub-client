@@ -3,6 +3,7 @@ import GamesTemplate, { GamesTemplateProps } from 'templates/Games'
 import filterItemsMock from '../components/ExploreSidebar/mock'
 import { initializeApollo } from 'utils/apollo'
 import { QUERY_GAMES } from 'graphql/queries/games'
+import { formatPrice, imageValidation } from 'utils/formatters'
 
 export default function GamesPage(props: GamesTemplateProps) {
   return <GamesTemplate {...props} />
@@ -15,26 +16,6 @@ export async function getServerSideProps() {
     query: QUERY_GAMES,
     variables: { pagination: { limit: 9 } }
   })
-
-  function formatUrl(url: string) {
-    return url.replace('/', '')
-  }
-
-  function imageValidation(game: any) {
-    if (game.attributes.cover.data) {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${formatUrl(game.attributes.cover.data?.attributes.url)}`
-    } else {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${formatUrl(game.attributes.gallery?.data[0]?.attributes.url)}`
-    }
-  }
-
-  function formatPrice(price: number) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    }).format(price)
-  }
 
   return {
     props: {
