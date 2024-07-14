@@ -1,5 +1,6 @@
 const gameCardSliderMockItems = [
   {
+    slug: 'population-zero',
     title: 'Population Zero',
     developer: 'Rockstar Games',
     img: '/img/gamecard-img.png',
@@ -7,6 +8,7 @@ const gameCardSliderMockItems = [
     promotionalPrice: 'R$ 200,00'
   },
   {
+    slug: 'population-zero',
     title: 'Population Zero 2',
     developer: 'Rockstar Games',
     img: '/img/gamecard-img.png',
@@ -14,6 +16,7 @@ const gameCardSliderMockItems = [
     promotionalPrice: 'R$ 200,00'
   },
   {
+    slug: 'population-zero',
     title: 'Population Zero 2',
     developer: 'Rockstar Games',
     img: '/img/gamecard-img.png',
@@ -21,6 +24,7 @@ const gameCardSliderMockItems = [
     promotionalPrice: 'R$ 200,00'
   },
   {
+    slug: 'population-zero',
     title: 'Population Zero 2',
     developer: 'Rockstar Games',
     img: '/img/gamecard-img.png',
@@ -28,6 +32,7 @@ const gameCardSliderMockItems = [
     promotionalPrice: 'R$ 200,00'
   },
   {
+    slug: 'population-zero',
     title: 'Population Zero 2',
     developer: 'Rockstar Games',
     img: '/img/gamecard-img.png',
