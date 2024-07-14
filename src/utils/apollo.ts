@@ -7,7 +7,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'http://127.0.0.1:1337/graphql'
+      uri: 'https://e84b-187-22-116-20.ngrok-free.app/graphql'
     }),
     cache: new InMemoryCache()
   })
