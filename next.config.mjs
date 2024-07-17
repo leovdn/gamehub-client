@@ -12,13 +12,18 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '127.0.0.1'
+        hostname: 'localhost'
+      },
+      {
+        protocol: 'https',
+        hostname: 'gamehub-api.leovdn.dev'
       }
     ]
   },
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    NEXT_PUBLIC_IMAGES_DOMAIN: process.env.NEXT_PUBLIC_IMAGES_DOMAIN
+    NEXT_PUBLIC_IMAGES_DOMAIN: process.env.NEXT_PUBLIC_IMAGES_DOMAIN,
+    NEXT_PUBLIC_STRAPI_GRAPHQL_API: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_API
   }
 }
 
