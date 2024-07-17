@@ -12,7 +12,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '127.0.0.1'
+        hostname: 'localhost'
+      },
+      {
+        protocol: 'https',
+        hostname: 'gamehub-api.leovdn.dev'
       }
     ]
   },
