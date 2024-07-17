@@ -1,6 +1,6 @@
+import { QUERY_HOME } from 'graphql/queries/home'
 import gamecardMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
-import { QUERY_HOME } from 'graphql/queries/home'
 import Home, { HomeTemplateProps } from 'templates/Home'
 import { initializeApollo } from 'utils/apollo'
 
@@ -34,7 +34,15 @@ export async function getStaticProps() {
       upcomingGames: gamecardMock,
       upcomingHighlight: highlightMock,
       upcomingMoreGames: gamecardMock,
-      freeGames: gamecardMock,
+      freeGames: data?.freeGames?.data?.map((game) => ({
+        id: game.id,
+        title: game.attributes?.title?.data?.attributes?.name,
+        slug: game.attributes?.slug,
+        developer: game.attributes?.developer?.data?.attributes?.name,
+        img: `${process.env.NEXT_PUBLIC_API_URL}${game.attributes?.img.data?.attributes?.url}`,
+        price: game.attributes?.price,
+        promotionalPrice: game.attributes?.promotionalPrice
+      })),
       freeHighlight: highlightMock
     }
   }
