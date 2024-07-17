@@ -34,4 +34,8 @@ jobs:
         run: yarn test:ci
 
       - name: Build
+        env:
+          NEXT_PUBLIC_STRAPI_GRAPHQL_API: ${{ secrets.NEXT_PUBLIC_STRAPI_GRAPHQL_API }}
+          NEXT_PUBLIC_IMAGES_DOMAIN: ${{ secrets.NEXT_PUBLIC_IMAGES_DOMAIN }}
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
         run: yarn build
