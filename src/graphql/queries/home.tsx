@@ -10,5 +10,13 @@ export const QUERY_HOME = gql(`
         }
       }
     }
+    freeGames  {
+      data {
+        id
+        attributes {
+          ...FreeGamesFragment
+        }
+      }
+    }
   }
 `)

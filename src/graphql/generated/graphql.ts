@@ -255,10 +255,19 @@ export type DateTimeFilterInput = {
 export type Developer = {
   __typename?: 'Developer';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  free_games?: Maybe<FreeGameRelationResponseCollection>;
   games?: Maybe<GameRelationResponseCollection>;
   name: Scalars['String']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type DeveloperFree_GamesArgs = {
+  filters?: InputMaybe<FreeGameFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -288,6 +297,7 @@ export type DeveloperEntityResponseCollection = {
 export type DeveloperFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<DeveloperFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  free_games?: InputMaybe<FreeGameFiltersInput>;
   games?: InputMaybe<GameFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   name?: InputMaybe<StringFilterInput>;
@@ -298,6 +308,7 @@ export type DeveloperFiltersInput = {
 };
 
 export type DeveloperInput = {
+  free_games?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   games?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   name?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -358,6 +369,66 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type FreeGame = {
+  __typename?: 'FreeGame';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  developer?: Maybe<DeveloperEntityResponse>;
+  img: UploadFileEntityResponse;
+  price: Scalars['Float']['output'];
+  promotionalPrice?: Maybe<Scalars['Float']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug: Scalars['String']['output'];
+  title?: Maybe<GameEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type FreeGameEntity = {
+  __typename?: 'FreeGameEntity';
+  attributes?: Maybe<FreeGame>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type FreeGameEntityResponse = {
+  __typename?: 'FreeGameEntityResponse';
+  data?: Maybe<FreeGameEntity>;
+};
+
+export type FreeGameEntityResponseCollection = {
+  __typename?: 'FreeGameEntityResponseCollection';
+  data: Array<FreeGameEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type FreeGameFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<FreeGameFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  developer?: InputMaybe<DeveloperFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<FreeGameFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<FreeGameFiltersInput>>>;
+  price?: InputMaybe<FloatFilterInput>;
+  promotionalPrice?: InputMaybe<FloatFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<GameFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type FreeGameInput = {
+  developer?: InputMaybe<Scalars['ID']['input']>;
+  img?: InputMaybe<Scalars['ID']['input']>;
+  price?: InputMaybe<Scalars['Float']['input']>;
+  promotionalPrice?: InputMaybe<Scalars['Float']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type FreeGameRelationResponseCollection = {
+  __typename?: 'FreeGameRelationResponseCollection';
+  data: Array<FreeGameEntity>;
+};
+
 export type Game = {
   __typename?: 'Game';
   categories?: Maybe<CategoryRelationResponseCollection>;
@@ -365,6 +436,7 @@ export type Game = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   developers?: Maybe<DeveloperRelationResponseCollection>;
+  free_games?: Maybe<FreeGameRelationResponseCollection>;
   gallery?: Maybe<UploadFileRelationResponseCollection>;
   name: Scalars['String']['output'];
   platforms?: Maybe<PlatformRelationResponseCollection>;
@@ -388,6 +460,14 @@ export type GameCategoriesArgs = {
 export type GameDevelopersArgs = {
   filters?: InputMaybe<DeveloperFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type GameFree_GamesArgs = {
+  filters?: InputMaybe<FreeGameFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -428,6 +508,7 @@ export type GameFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   developers?: InputMaybe<DeveloperFiltersInput>;
+  free_games?: InputMaybe<FreeGameFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<GameFiltersInput>;
@@ -447,6 +528,7 @@ export type GameInput = {
   cover?: InputMaybe<Scalars['ID']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   developers?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  free_games?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   gallery?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   name?: InputMaybe<Scalars['String']['input']>;
   platforms?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
@@ -463,7 +545,7 @@ export type GameRelationResponseCollection = {
   data: Array<GameEntity>;
 };
 
-export type GenericMorph = Banner | Category | ComponentPageButton | ComponentPageRibbon | Developer | Game | I18NLocale | Platform | Publisher | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Banner | Category | ComponentPageButton | ComponentPageRibbon | Developer | FreeGame | Game | I18NLocale | Platform | Publisher | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -583,6 +665,7 @@ export type Mutation = {
   createBanner?: Maybe<BannerEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
   createDeveloper?: Maybe<DeveloperEntityResponse>;
+  createFreeGame?: Maybe<FreeGameEntityResponse>;
   createGame?: Maybe<GameEntityResponse>;
   createPlatform?: Maybe<PlatformEntityResponse>;
   createPublisher?: Maybe<PublisherEntityResponse>;
@@ -595,6 +678,7 @@ export type Mutation = {
   deleteBanner?: Maybe<BannerEntityResponse>;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteDeveloper?: Maybe<DeveloperEntityResponse>;
+  deleteFreeGame?: Maybe<FreeGameEntityResponse>;
   deleteGame?: Maybe<GameEntityResponse>;
   deletePlatform?: Maybe<PlatformEntityResponse>;
   deletePublisher?: Maybe<PublisherEntityResponse>;
@@ -619,6 +703,7 @@ export type Mutation = {
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateDeveloper?: Maybe<DeveloperEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateFreeGame?: Maybe<FreeGameEntityResponse>;
   updateGame?: Maybe<GameEntityResponse>;
   updatePlatform?: Maybe<PlatformEntityResponse>;
   updatePublisher?: Maybe<PublisherEntityResponse>;
@@ -651,6 +736,11 @@ export type MutationCreateCategoryArgs = {
 
 export type MutationCreateDeveloperArgs = {
   data: DeveloperInput;
+};
+
+
+export type MutationCreateFreeGameArgs = {
+  data: FreeGameInput;
 };
 
 
@@ -700,6 +790,11 @@ export type MutationDeleteCategoryArgs = {
 
 
 export type MutationDeleteDeveloperArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteFreeGameArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -800,6 +895,12 @@ export type MutationUpdateDeveloperArgs = {
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+
+export type MutationUpdateFreeGameArgs = {
+  data: FreeGameInput;
+  id: Scalars['ID']['input'];
 };
 
 
@@ -988,6 +1089,8 @@ export type Query = {
   category?: Maybe<CategoryEntityResponse>;
   developer?: Maybe<DeveloperEntityResponse>;
   developers?: Maybe<DeveloperEntityResponseCollection>;
+  freeGame?: Maybe<FreeGameEntityResponse>;
+  freeGames?: Maybe<FreeGameEntityResponseCollection>;
   game?: Maybe<GameEntityResponse>;
   games?: Maybe<GameEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
@@ -1041,6 +1144,19 @@ export type QueryDeveloperArgs = {
 export type QueryDevelopersArgs = {
   filters?: InputMaybe<DeveloperFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFreeGameArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryFreeGamesArgs = {
+  filters?: InputMaybe<FreeGameFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -1545,6 +1661,8 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type BannerFragmentFragment = { __typename?: 'Banner', title: string, subtitle: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, button?: { __typename?: 'ComponentPageButton', id: string, label: string, link: string } | null, ribbon?: { __typename?: 'ComponentPageRibbon', id: string, text: string, color?: Enum_Componentpageribbon_Color | null, size?: Enum_Componentpageribbon_Size | null } | null };
 
+export type FreeGamesFragmentFragment = { __typename?: 'FreeGame', slug: string, price: number, promotionalPrice?: number | null, title?: { __typename?: 'GameEntityResponse', data?: { __typename?: 'GameEntity', attributes?: { __typename?: 'Game', name: string } | null } | null } | null, developer?: { __typename?: 'DeveloperEntityResponse', data?: { __typename?: 'DeveloperEntity', id?: string | null, attributes?: { __typename?: 'Developer', name: string } | null } | null } | null, img: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null } | null } };
+
 export type GetGamesQueryVariables = Exact<{
   pagination?: InputMaybe<PaginationArg>;
 }>;
@@ -1562,9 +1680,10 @@ export type QueryGameBySlugQuery = { __typename?: 'Query', games?: { __typename?
 export type QueryHomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type QueryHomeQuery = { __typename?: 'Query', banners?: { __typename?: 'BannerEntityResponseCollection', data: Array<{ __typename?: 'BannerEntity', id?: string | null, attributes?: { __typename?: 'Banner', title: string, subtitle: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, button?: { __typename?: 'ComponentPageButton', id: string, label: string, link: string } | null, ribbon?: { __typename?: 'ComponentPageRibbon', id: string, text: string, color?: Enum_Componentpageribbon_Color | null, size?: Enum_Componentpageribbon_Size | null } | null } | null }> } | null };
+export type QueryHomeQuery = { __typename?: 'Query', banners?: { __typename?: 'BannerEntityResponseCollection', data: Array<{ __typename?: 'BannerEntity', id?: string | null, attributes?: { __typename?: 'Banner', title: string, subtitle: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, button?: { __typename?: 'ComponentPageButton', id: string, label: string, link: string } | null, ribbon?: { __typename?: 'ComponentPageRibbon', id: string, text: string, color?: Enum_Componentpageribbon_Color | null, size?: Enum_Componentpageribbon_Size | null } | null } | null }> } | null, freeGames?: { __typename?: 'FreeGameEntityResponseCollection', data: Array<{ __typename?: 'FreeGameEntity', id?: string | null, attributes?: { __typename?: 'FreeGame', slug: string, price: number, promotionalPrice?: number | null, title?: { __typename?: 'GameEntityResponse', data?: { __typename?: 'GameEntity', attributes?: { __typename?: 'Game', name: string } | null } | null } | null, developer?: { __typename?: 'DeveloperEntityResponse', data?: { __typename?: 'DeveloperEntity', id?: string | null, attributes?: { __typename?: 'Developer', name: string } | null } | null } | null, img: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null } | null } } | null }> } | null };
 
 export const BannerFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BannerFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ribbon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]}}]} as unknown as DocumentNode<BannerFragmentFragment, unknown>;
+export const FreeGamesFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FreeGamesFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FreeGame"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"developer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"img"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"promotionalPrice"}}]}}]} as unknown as DocumentNode<FreeGamesFragmentFragment, unknown>;
 export const GetGamesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetGames"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pagination"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArg"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"games"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pagination"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"release_date"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"developers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetGamesQuery, GetGamesQueryVariables>;
 export const QueryGameBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QueryGameBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"games"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"short_description"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"release_date"}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"url"}},{"kind":"Field","alias":{"kind":"Name","value":"label"},"name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"developers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"publisher"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"platforms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<QueryGameBySlugQuery, QueryGameBySlugQueryVariables>;
-export const QueryHomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QueryHome"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"banners"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BannerFragment"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BannerFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ribbon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]}}]} as unknown as DocumentNode<QueryHomeQuery, QueryHomeQueryVariables>;
+export const QueryHomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QueryHome"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"banners"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BannerFragment"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"freeGames"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FreeGamesFragment"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BannerFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"button"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ribbon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FreeGamesFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FreeGame"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"developer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"img"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"promotionalPrice"}}]}}]} as unknown as DocumentNode<QueryHomeQuery, QueryHomeQueryVariables>;

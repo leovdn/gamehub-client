@@ -23,18 +23,24 @@ const Menu = ({ username }: MenuProps) => {
     <S.Wrapper>
       <MediaMatch lessthan="768px">
         <S.IconWrapper onClick={() => setIsOpen(true)}>
-          <MenuIcon aria-label="Open Menu" />
+          <Link href="/">
+            <MenuIcon aria-label="Open Menu" />
+          </Link>
         </S.IconWrapper>
       </MediaMatch>
 
       <S.LogoWrapper>
-        <Logo $hideonmobile color="alternative" size="large" />
+        <Link href="/">
+          <Logo $hideonmobile color="alternative" size="large" />
+        </Link>
       </S.LogoWrapper>
 
       <MediaMatch greaterthan="768px">
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
-          <S.MenuLink href="#">Explore</S.MenuLink>
+          <S.MenuLink href="/">Home</S.MenuLink>
+          <S.MenuLink href="/games">Explore</S.MenuLink>
+          <S.MenuLink href="#">My Account</S.MenuLink>
+          <S.MenuLink href="/wishlist">Wishlist</S.MenuLink>
         </S.MenuNav>
       </MediaMatch>
 
@@ -44,7 +50,9 @@ const Menu = ({ username }: MenuProps) => {
         </S.IconWrapper>
 
         <S.IconWrapper>
-          <ShoppingCartIcon aria-label="Shopping Cart" />
+          <Link href="/checkout">
+            <ShoppingCartIcon aria-label="Shopping Cart" />
+          </Link>
         </S.IconWrapper>
 
         {!username && (
@@ -59,13 +67,13 @@ const Menu = ({ username }: MenuProps) => {
       <S.MenuFull aria-hidden={!$isOpen} $isOpen={$isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
-          <S.MenuLink href="#">Explore</S.MenuLink>
+          <S.MenuLink href="/">Home</S.MenuLink>
+          <S.MenuLink href="/games">Explore</S.MenuLink>
 
           {!!username && (
             <>
               <S.MenuLink href="#">My Account</S.MenuLink>
-              <S.MenuLink href="#">Wishlist</S.MenuLink>
+              <S.MenuLink href="/wishlist">Wishlist</S.MenuLink>
             </>
           )}
         </S.MenuNav>

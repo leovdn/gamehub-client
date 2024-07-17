@@ -37,6 +37,10 @@ export const IconWrapper = styled.div`
 
     color: ${theme.colors.white};
     cursor: pointer;
+
+    a {
+      color: ${theme.colors.white};
+    }
   `}
 `
 
