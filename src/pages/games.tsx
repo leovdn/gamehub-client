@@ -14,7 +14,7 @@ export async function getServerSideProps() {
 
   const { data } = await apolloClient.query({
     query: QUERY_GAMES,
-    variables: { pagination: { limit: 9 } }
+    variables: { pagination: { limit: 15 } }
   })
 
   return {

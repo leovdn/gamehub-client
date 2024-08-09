@@ -8,7 +8,7 @@ import Link from 'next/link'
 export type GameCardProps = {
   slug: string
   title: string
-  developer: string
+  developer: string | undefined
   img: string
   price: string
   promotionalPrice?: string

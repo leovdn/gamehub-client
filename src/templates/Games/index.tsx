@@ -1,16 +1,23 @@
+import { useQuery } from '@apollo/client'
 import Base from 'templates/Base'
+import { Grid } from 'components/Grid'
 import GameCard, { GameCardProps } from 'components/GameCard'
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
-import * as S from './styles'
-import { Grid } from 'components/Grid'
 import { KeyboardArrowDown } from 'styled-icons/material-outlined'
+import * as S from './styles'
+import { QUERY_GAMES } from 'graphql/queries/games'
+import { formatPrice, imageValidation } from 'utils/formatters'
 
 export type GamesTemplateProps = {
   games?: GameCardProps[]
   filterItems: ItemProps[]
 }
 
-const GamesTemplate = ({ games = [], filterItems }: GamesTemplateProps) => {
+const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
+  const { data, loading } = useQuery(QUERY_GAMES, {
+    variables: { pagination: { limit: 15 } }
+  })
+
   return (
     <Base>
       <S.Main>
@@ -18,8 +25,15 @@ const GamesTemplate = ({ games = [], filterItems }: GamesTemplateProps) => {
 
         <section>
           <Grid>
-            {games.map((game) => (
-              <GameCard key={game.title} {...game} />
+            {data?.games?.data.map((game) => (
+              <GameCard
+                key={game.id}
+                title={game.attributes!.name}
+                img={imageValidation(game)}
+                slug={game!.attributes!.slug!}
+                developer={game.attributes?.developers?.data[0].attributes?.name}
+                price={formatPrice(game.attributes!.price)}
+              />
             ))}
           </Grid>
 
