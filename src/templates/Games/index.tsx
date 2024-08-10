@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client'
+import { QUERY_GAMES } from 'graphql/queries/games'
+import { formatPrice, imageValidation } from 'utils/formatters'
+import { KeyboardArrowDown } from 'styled-icons/material-outlined'
 import Base from 'templates/Base'
 import { Grid } from 'components/Grid'
 import GameCard, { GameCardProps } from 'components/GameCard'
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
-import { KeyboardArrowDown } from 'styled-icons/material-outlined'
-import * as S from './styles'
-import { QUERY_GAMES } from 'graphql/queries/games'
-import { formatPrice, imageValidation } from 'utils/formatters'
 import Loading from 'components/Loader'
+import * as S from './styles'
 
 export type GamesTemplateProps = {
   games?: GameCardProps[]
@@ -16,16 +16,14 @@ export type GamesTemplateProps = {
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
   const { data, loading, fetchMore } = useQuery(QUERY_GAMES, {
-    variables: { pagination: { limit: 6 } }
+    variables: { pagination: { limit: 9 } }
   })
 
   function handleShowMore() {
     fetchMore({
-      variables: { pagination: { limit: 6, start: data?.games?.data.length } }
+      variables: { pagination: { limit: 9, start: data?.games?.data.length } }
     })
   }
-
-  console.log(data?.games?.data.length)
 
   return (
     <Base>

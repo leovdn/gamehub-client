@@ -1,24 +1,8 @@
 import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
-import { concatPagination } from '@apollo/client/utilities'
 import { useMemo } from 'react'
+import { uniqBy } from './formatters'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
-
-const uniqBy = (arr, predicate) => {
-  const cb = typeof predicate === 'function' ? predicate : (o) => o[predicate]
-
-  return [
-    ...arr
-      .reduce((map, item) => {
-        const key = item === null || item === undefined ? item : cb(item)
-
-        map.has(key) || map.set(key, item)
-
-        return map
-      }, new Map())
-      .values()
-  ]
-}
 
 function createApolloClient() {
   return new ApolloClient({
@@ -30,7 +14,6 @@ function createApolloClient() {
       typePolicies: {
         Query: {
           fields: {
-            // games: concatPagination()
             games: {
               keyArgs: false,
               merge: (existing = { __typename: 'TopicsList', data: [] }, incoming) => {
