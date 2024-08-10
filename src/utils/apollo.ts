@@ -1,6 +1,6 @@
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client'
 import { useMemo } from 'react'
-import { uniqBy } from './formatters'
+import apolloCache from './apolloCache'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
@@ -10,24 +10,7 @@ function createApolloClient() {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_API
     }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            games: {
-              keyArgs: false,
-              merge: (existing = { __typename: 'TopicsList', data: [] }, incoming) => {
-                const result = {
-                  ...incoming,
-                  data: uniqBy([...existing.data, ...incoming.data], '__ref')
-                }
-                return result
-              }
-            }
-          }
-        }
-      }
-    })
+    cache: apolloCache
   })
 }
 
