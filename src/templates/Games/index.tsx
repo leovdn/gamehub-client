@@ -21,9 +21,11 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
 
   function handleShowMore() {
     fetchMore({
-      variables: { pagination: { limit: data!.games!.data.length + 6, start: 0 } }
+      variables: { pagination: { limit: 6, start: data?.games?.data.length } }
     })
   }
+
+  console.log(data?.games?.data.length)
 
   return (
     <Base>
