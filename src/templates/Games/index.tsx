@@ -15,9 +15,15 @@ export type GamesTemplateProps = {
 }
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
-  const { data, loading } = useQuery(QUERY_GAMES, {
-    variables: { pagination: { limit: 15 } }
+  const { data, loading, fetchMore } = useQuery(QUERY_GAMES, {
+    variables: { pagination: { limit: 6 } }
   })
+
+  function handleShowMore() {
+    fetchMore({
+      variables: { pagination: { limit: data!.games!.data.length + 6, start: 0 } }
+    })
+  }
 
   return (
     <Base>
@@ -41,7 +47,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
               ))}
             </Grid>
 
-            <S.ShowMore role="button" onClick={() => console.log('Show more')}>
+            <S.ShowMore role="button" onClick={handleShowMore}>
               <p>Show more</p>
               <KeyboardArrowDown size={34} />
             </S.ShowMore>

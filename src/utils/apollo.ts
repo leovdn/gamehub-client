@@ -9,7 +9,20 @@ function createApolloClient() {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_API
     }),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            games: {
+              keyArgs: false,
+              merge(existing = [], incoming) {
+                return incoming
+              }
+            }
+          }
+        }
+      }
+    })
   })
 }
 
