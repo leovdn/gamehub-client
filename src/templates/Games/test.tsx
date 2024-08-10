@@ -1,11 +1,13 @@
+import { ClassAttributes, ImgHTMLAttributes } from 'react'
 import { screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import userEvent from '@testing-library/user-event'
 import { renderWithTheme } from 'utils/tests/helpers'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
+import { mockFetchMoreGames, mockGamesQueryData } from './mocks'
+import apolloCache from 'utils/apolloCache'
 import Games from '.'
-import { QUERY_GAMES } from 'graphql/queries/games'
-import { ClassAttributes, ImgHTMLAttributes } from 'react'
 
 jest.mock('next/image', () => ({
   __esModule: true,
@@ -52,50 +54,7 @@ describe('<Games />', () => {
 
   it('should render sections', async () => {
     renderWithTheme(
-      <MockedProvider
-        mocks={[
-          {
-            request: { query: QUERY_GAMES, variables: { pagination: { limit: 9 } } },
-            result: {
-              data: {
-                games: {
-                  data: [
-                    {
-                      id: '132',
-                      attributes: {
-                        name: 'Stranglehold',
-                        slug: 'stranglehold',
-                        price: 1.99,
-                        release_date: '2007-09-05',
-                        rating: 'BR18',
-                        cover: {
-                          data: {
-                            id: '47',
-                            attributes: {
-                              url: 'uploads/stranglehold_d92b0c49d6.jpg'
-                            }
-                          }
-                        },
-                        developers: {
-                          data: [
-                            {
-                              id: '182',
-                              attributes: {
-                                name: 'Midway Games, Inc., Tiger Hill Entertainment'
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]}
-        addTypename={false}
-      >
+      <MockedProvider mocks={[mockGamesQueryData]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
@@ -109,5 +68,20 @@ describe('<Games />', () => {
     expect(await screen.findByText(/Stranglehold/i)).toBeInTheDocument()
 
     expect(await screen.findByRole('button', { name: /show more/i })).toBeInTheDocument()
+  })
+
+  it('should render more games when show more is clicked', async () => {
+    renderWithTheme(
+      <MockedProvider cache={apolloCache} mocks={[mockGamesQueryData, mockFetchMoreGames]}>
+        <Games filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
+    expect(await screen.findByText(/Stranglehold/i)).toBeInTheDocument()
+
+    userEvent.click(await screen.findByRole('button', { name: /show more/i }))
+
+    // expect(await screen.findByText(/Stranglehold 2/i)).toBeInTheDocument()
+
+    // screen.logTestingPlaygroundURL()
   })
 })
