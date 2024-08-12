@@ -18,18 +18,24 @@ export function formatPrice(price: number) {
   }).format(price)
 }
 
-export const uniqBy = (arr, predicate) => {
-  const cb = typeof predicate === 'function' ? predicate : (o) => o[predicate]
+export function uniqBy(arr: any[], predicate: string) {
+  const cb = typeof predicate === 'function' ? predicate : (o: { [x: string]: any }) => o[predicate]
 
   return [
     ...arr
-      .reduce((map, item) => {
-        const key = item === null || item === undefined ? item : cb(item)
+      .reduce(
+        (
+          map: { has: (arg0: any) => any; set: (arg0: any, arg1: any) => any },
+          item: null | undefined
+        ) => {
+          const key = item === null || item === undefined ? item : cb(item)
 
-        map.has(key) || map.set(key, item)
+          map.has(key) || map.set(key, item)
 
-        return map
-      }, new Map())
+          return map
+        },
+        new Map()
+      )
       .values()
   ]
 }
