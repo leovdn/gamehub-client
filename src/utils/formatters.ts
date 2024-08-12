@@ -17,3 +17,25 @@ export function formatPrice(price: number) {
     minimumFractionDigits: 2
   }).format(price)
 }
+
+export function uniqBy(arr: any[], predicate: string) {
+  const cb = typeof predicate === 'function' ? predicate : (o: { [x: string]: any }) => o[predicate]
+
+  return [
+    ...arr
+      .reduce(
+        (
+          map: { has: (arg0: any) => any; set: (arg0: any, arg1: any) => any },
+          item: null | undefined
+        ) => {
+          const key = item === null || item === undefined ? item : cb(item)
+
+          map.has(key) || map.set(key, item)
+
+          return map
+        },
+        new Map()
+      )
+      .values()
+  ]
+}

@@ -1,7 +1,8 @@
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client'
 import { useMemo } from 'react'
+import apolloCache from './apolloCache'
 
-let apolloClient: ApolloClient<NormalizedCacheObject>
+let apolloClient: ApolloClient<NormalizedCacheObject | null>
 
 function createApolloClient() {
   return new ApolloClient({
@@ -9,11 +10,11 @@ function createApolloClient() {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_API
     }),
-    cache: new InMemoryCache()
+    cache: apolloCache
   })
 }
 
-export function initializeApollo(initialState = {}) {
+export function initializeApollo(initialState = null) {
   // verify if apolloClient is already initialized
   const apolloClientGlobal = apolloClient ?? createApolloClient()
 
@@ -29,7 +30,7 @@ export function initializeApollo(initialState = {}) {
   return apolloClient
 }
 
-export function useApollo(initialState = {}) {
+export function useApollo(initialState = null) {
   const store = useMemo(() => initializeApollo(initialState), [initialState])
   return store
 }
