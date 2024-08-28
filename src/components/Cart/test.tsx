@@ -25,4 +25,10 @@ describe('<Cart />', () => {
     expect(screen.getAllByTestId(/Mock GameItem/i)).toHaveLength(2)
     expect(screen.getByText(props.total)).toBeInTheDocument()
   })
+
+  it('should render empty when no items', () => {
+    renderWithTheme(<Cart />)
+
+    expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument()
+  })
 })

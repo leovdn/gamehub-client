@@ -11,6 +11,9 @@ import { useState } from 'react'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
 import Link from 'next/link'
+import CartIcon from 'components/CartIcon'
+import CartDropdown from 'components/CartDropdown'
+import UserDropdown from 'components/UserDropdown'
 
 export type MenuProps = {
   username?: string
@@ -49,19 +52,29 @@ const Menu = ({ username }: MenuProps) => {
           <SearchIcon aria-label="Search" />
         </S.IconWrapper>
 
-        <S.IconWrapper>
-          <Link href="/checkout">
-            <ShoppingCartIcon aria-label="Shopping Cart" />
-          </Link>
-        </S.IconWrapper>
+        <MediaMatch lessthan="768px">
+          <S.IconWrapper>
+            <Link href="/checkout">
+              <CartIcon />
+            </Link>
+          </S.IconWrapper>
+        </MediaMatch>
 
-        {!username && (
-          <MediaMatch greaterthan="768px">
+        <MediaMatch greaterthan="768px">
+          <S.IconWrapper>
+            <CartDropdown items={[]} total="R$ 430,00" />
+          </S.IconWrapper>
+        </MediaMatch>
+
+        <MediaMatch greaterthan="768px">
+          {!username ? (
             <Link href="/sign-in" passHref>
               <Button>Sign In</Button>
             </Link>
-          </MediaMatch>
-        )}
+          ) : (
+            <UserDropdown username={username} />
+          )}
+        </MediaMatch>
       </S.MenuGroup>
 
       <S.MenuFull aria-hidden={!$isOpen} $isOpen={$isOpen}>

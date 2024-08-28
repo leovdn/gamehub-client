@@ -10,7 +10,10 @@ function createApolloClient() {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_API
     }),
-    cache: apolloCache
+    cache: apolloCache,
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
+    }
   })
 }
 
