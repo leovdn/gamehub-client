@@ -1,8 +1,33 @@
 import styled, { css } from 'styled-components'
+import * as EmptyStyles from 'components/Empty/styles'
 
-export const Wrapper = styled.section`
-  ${({ theme }) => css`
+type WrapperProps = {
+  isEmpty: boolean
+}
+
+export const Wrapper = styled.section<WrapperProps>`
+  ${({ theme, isEmpty }) => css`
     background: ${theme.colors.white};
+
+    ${isEmpty &&
+    css`
+      ${EmptyStyles.Wrapper} {
+        padding-bottom: ${theme.spacings.medium};
+      }
+
+      ${EmptyStyles.EmptyImage} {
+        max-width: 20rem;
+      }
+
+      ${EmptyStyles.EmptyTitle} {
+        font-size: ${theme.font.sizes.large};
+      }
+
+      ${EmptyStyles.EmptyDescription} {
+        font-size: ${theme.font.sizes.medium};
+        color: ${theme.colors.black};
+      }
+    `}
   `}
 `
 

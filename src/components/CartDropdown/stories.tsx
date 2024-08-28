@@ -16,8 +16,18 @@ export default {
   }
 } as Meta
 
-export const Basic: StoryFn<CartDropdownProps> = (args) => (
+export const Default: StoryFn<CartDropdownProps> = (args) => (
   <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
     <CartDropdown {...args} />
   </div>
 )
+
+export const Empty: StoryFn<CartDropdownProps> = (args) => (
+  <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
+    <CartDropdown {...args} />
+  </div>
+)
+
+Empty.args = {
+  items: []
+}
