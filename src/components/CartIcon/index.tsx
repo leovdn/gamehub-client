@@ -5,10 +5,10 @@ export type CartIconProps = {
   quantity?: number
 }
 
-const CartIcon = ({ quantity = 0 }: CartIconProps) => {
+const CartIcon = ({ quantity = 2 }: CartIconProps) => {
   return (
     <S.Wrapper>
-      {!!quantity && <S.CartBadge aria-label="Cart Items">{quantity}</S.CartBadge>}
+      {quantity > 0 && <S.CartBadge aria-label="Cart Items">{quantity}</S.CartBadge>}
       <ShoppingCart aria-label="Shopping Cart" />
     </S.Wrapper>
   )
