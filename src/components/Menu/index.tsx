@@ -11,6 +11,7 @@ import { useState } from 'react'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
 import Link from 'next/link'
+import CartIcon from 'components/CartIcon'
 
 export type MenuProps = {
   username?: string
@@ -51,7 +52,7 @@ const Menu = ({ username }: MenuProps) => {
 
         <S.IconWrapper>
           <Link href="/checkout">
-            <ShoppingCartIcon aria-label="Shopping Cart" />
+            <CartIcon />
           </Link>
         </S.IconWrapper>
 
