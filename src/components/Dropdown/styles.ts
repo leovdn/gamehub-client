@@ -21,6 +21,7 @@ export const Wrapper = styled.main<WrapperProps>`
   ${({ theme, isOpen }) => css`
     position: relative;
     width: max-content;
+    z-index: 99;
 
     ${Content} {
       ${isOpen && wrapperModifiers.open()}
@@ -60,6 +61,8 @@ export const Content = styled.div`
     border: 0.1rem solid ${theme.colors.lightGray};
     border-radius: ${theme.border.radius};
     z-index: 1;
+    box-shadow: 0 0.4rem 3rem 1rem rgba(0, 0, 0, 0.5);
+    cursor: default;
 
 
     &::before {
