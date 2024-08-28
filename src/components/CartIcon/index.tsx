@@ -5,7 +5,7 @@ export type CartIconProps = {
   quantity?: number
 }
 
-const CartIcon = ({ quantity = 2 }: CartIconProps) => {
+const CartIcon = ({ quantity = 0 }: CartIconProps) => {
   return (
     <S.Wrapper>
       {quantity > 0 && <S.CartBadge aria-label="Cart Items">{quantity}</S.CartBadge>}

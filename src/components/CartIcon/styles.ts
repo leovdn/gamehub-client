@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.main`
   position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+
+  cursor: pointer;
 `
 
 export const CartBadge = styled.span`
