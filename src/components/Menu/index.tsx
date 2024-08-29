@@ -61,9 +61,7 @@ const Menu = ({ username }: MenuProps) => {
         </MediaMatch>
 
         <MediaMatch greaterthan="768px">
-          <S.IconWrapper>
-            <CartDropdown items={[]} total="R$ 430,00" />
-          </S.IconWrapper>
+          <CartDropdown items={[]} total="R$ 430,00" />
         </MediaMatch>
 
         <MediaMatch greaterthan="768px">
