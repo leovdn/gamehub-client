@@ -3,7 +3,7 @@ import gamecardMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
 import Home, { HomeTemplateProps } from 'templates/Home'
 import { initializeApollo } from 'utils/apollo'
-import { formatPrice } from 'utils/formatters'
+import { imageValidation } from 'utils/formatters'
 
 export default function Index(props: HomeTemplateProps) {
   return <Home {...props} />
@@ -12,24 +12,20 @@ export default function Index(props: HomeTemplateProps) {
 export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
-  const { data } = await apolloClient.query({
+  const {
+    data: { banners, newGames, freeGames, upcommingGames, sections }
+  } = await apolloClient.query({
     query: QUERY_HOME
   })
 
-  const freeGames = data?.freeGames?.data?.map((game) => ({
-    id: game.id,
-    title: game.attributes?.title?.data?.attributes?.name,
-    slug: game.attributes?.slug,
-    developer: game.attributes?.developer?.data?.attributes?.name,
-    img: `${process.env.NEXT_PUBLIC_API_URL}${game.attributes?.img.data?.attributes?.url}`,
-    price: formatPrice(game?.attributes!.price),
-    promotionalPrice: game.attributes?.promotionalPrice
-  }))
+  const mostPopularHighlight = sections?.data?.attributes?.popularGames?.highlight
+  const upcommingHighlight = sections?.data?.attributes?.upcommingGames?.highlight
+  const freeHighlight = sections?.data?.attributes?.upcommingGames?.highlight
 
   return {
     props: {
       revalidate: 10,
-      banners: data?.banners?.data?.map((banner) => ({
+      banners: banners?.data.map((banner) => ({
         img: `${process.env.NEXT_PUBLIC_API_URL}${banner?.attributes?.image?.data?.attributes?.url}`,
         title: banner.attributes?.title,
         subtitle: banner.attributes?.subtitle,
@@ -39,14 +35,61 @@ export async function getStaticProps() {
         ribbonColor: banner.attributes?.ribbon?.color,
         ribbonSize: banner.attributes?.ribbon?.size
       })),
-      newGames: freeGames,
-      mostPopularGames: gamecardMock,
-      mostPopularHighlight: highlightMock,
-      upcomingGames: freeGames,
-      upcomingHighlight: highlightMock,
-      upcomingMoreGames: freeGames,
-      freeGames: freeGames,
-      freeHighlight: highlightMock
+      newGames: newGames?.data.map((game) => ({
+        img: imageValidation(game),
+        title: game.attributes?.name,
+        slug: game.attributes?.slug,
+        developer: game.attributes?.developers?.data[0]?.attributes?.name,
+        price: game.attributes?.price
+      })),
+      mostPopularGames: sections?.data?.attributes?.popularGames?.games?.data.map((game) => ({
+        img: imageValidation(game),
+        title: game.attributes?.name,
+        slug: game.attributes?.slug,
+        developer: game.attributes?.developers?.data[0]?.attributes?.name,
+        price: game.attributes?.price
+      })),
+      mostPopularHighlight: {
+        title: mostPopularHighlight?.title,
+        subtitle: mostPopularHighlight?.subtitle,
+        buttonLabel: mostPopularHighlight?.buttonLabel,
+        buttonLink: mostPopularHighlight?.buttonLink,
+        $backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${mostPopularHighlight?.background.data?.attributes?.url}`,
+        floatImage: !mostPopularHighlight?.floatImage ?? null,
+        align: mostPopularHighlight?.align
+      },
+      upcomingGames: upcommingGames?.data.map((game) => ({
+        img: imageValidation(game),
+        title: game.attributes?.name,
+        slug: game.attributes?.slug,
+        developer: game.attributes?.developers?.data[0]?.attributes?.name,
+        price: game.attributes?.price
+      })),
+      upcomingHighlight: {
+        title: upcommingHighlight?.title,
+        subtitle: upcommingHighlight?.subtitle,
+        buttonLabel: upcommingHighlight?.buttonLabel,
+        buttonLink: upcommingHighlight?.buttonLink,
+        $backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${upcommingHighlight?.background.data?.attributes?.url}`,
+        floatImage: !upcommingHighlight?.floatImage ?? null,
+        align: upcommingHighlight?.align
+      },
+      freeGames: freeGames?.data.map((game) => ({
+        img: imageValidation(game),
+        title: game.attributes?.name,
+        slug: game.attributes?.slug,
+        developer: game.attributes?.developers?.data[0]?.attributes?.name,
+        price: game.attributes?.price
+      })),
+      freeHighlight: {
+        title: freeHighlight?.title,
+        subtitle: freeHighlight?.subtitle,
+        buttonLabel: freeHighlight?.buttonLabel,
+        buttonLink: freeHighlight?.buttonLink,
+        $backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${freeHighlight?.background.data?.attributes?.url}`,
+        floatImage: !freeHighlight?.floatImage ?? null,
+        align: freeHighlight?.align
+      }
     }
   }
 }
