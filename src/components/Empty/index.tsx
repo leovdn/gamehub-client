@@ -17,8 +17,8 @@ const Empty = ({ title, description, hasLink }: EmptyProps) => {
       <S.EmptyDescription>{description}</S.EmptyDescription>
 
       {hasLink && (
-        <Link href="/" passHref>
-          <Button as="a">Back to store</Button>
+        <Link href="/">
+          <Button>Back to store</Button>
         </Link>
       )}
     </S.Wrapper>
