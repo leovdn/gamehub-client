@@ -1,32 +1,30 @@
 import { gql } from 'graphql/generated'
 
-export const FREE_GAMES_FRAGMENT = gql(`
-  fragment FreeGamesFragment on FreeGame {
+export const GAME_FRAGMENT = gql(`
+  fragment GameFragment on Game {
+    name
     slug
-    title {
+    price
+    cover {
       data {
-        attributes {
-          name
-        }
-      }
-    }
-    developer {
-      data {
-        id
-        attributes {
-          name
-        }
-      }
-    }
-    img {
-      data {
-        id
         attributes {
           url
         }
       }
     }
-    price
-    promotionalPrice
+    gallery(pagination: { limit: 1 }) {
+      data {
+        attributes {
+          url
+        }
+      }
+    }
+    developers {
+      data {
+        attributes {
+          name
+        }
+      }
+    }
   }
 `)
