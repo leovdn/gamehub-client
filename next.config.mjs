@@ -6,7 +6,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production'
   },
   experimental: {
-    forceSwcTransforms: true
+    forceSwcTransforms: true,
+    instrumentationHook: true
   },
   images: {
     remotePatterns: [
