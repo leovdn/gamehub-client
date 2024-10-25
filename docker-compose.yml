@@ -19,6 +19,7 @@ services:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
       NEXT_PUBLIC_IMAGES_DOMAIN: ${NEXT_PUBLIC_IMAGES_DOMAIN}
       NEXT_PUBLIC_STRAPI_API_TOKEN: ${NEXT_PUBLIC_STRAPI_API_TOKEN}
+      OTEL_EXPORTER_OTLP_ENDPOINT: 'http://otel-collector:4318'
     restart: unless-stopped
 
     # Jaeger

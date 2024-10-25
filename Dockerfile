@@ -10,5 +10,7 @@ RUN yarn install
 #Copy source files
 COPY . .
 
+RUN yarn build
+
 #Running the app
 CMD ["yarn","start"]
