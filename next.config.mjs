@@ -16,6 +16,10 @@ const nextConfig = {
         hostname: 'localhost'
       },
       {
+        protocol: 'http',
+        hostname: '172.19.0.1'
+      },
+      {
         protocol: 'https',
         hostname: 'gamehub-api.leovdn.dev'
       }

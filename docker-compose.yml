@@ -1,0 +1,77 @@
+version: '3.8'
+services:
+  nextjs:
+    build: .
+    container_name: gamehub-web
+    ports:
+      - '3000:3000'
+    volumes:
+      # Required to sync file changes.
+      - .:/usr/src/web
+      # Required to not break node modules.
+      - /usr/src/web/node_modules
+      # Required for next to do it's thing.
+      - /usr/src/web/.next
+    env_file:
+      - .env
+    environment:
+      NEXT_PUBLIC_STRAPI_GRAPHQL_API: ${NEXT_PUBLIC_STRAPI_GRAPHQL_API}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      NEXT_PUBLIC_IMAGES_DOMAIN: ${NEXT_PUBLIC_IMAGES_DOMAIN}
+      NEXT_PUBLIC_STRAPI_API_TOKEN: ${NEXT_PUBLIC_STRAPI_API_TOKEN}
+    restart: unless-stopped
+
+    # Jaeger
+  jaeger-all-in-one:
+    image: jaegertracing/all-in-one:latest
+    restart: always
+    ports:
+      - '16686:16686'
+      - '14268'
+      - '14250'
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    ports:
+      - 3090:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_PATHS_STATIC: /usr/share/grafana/public/app
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    restart: always
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - '9091:9090'
+
+    # Collector
+  otel-collector:
+    image: otel/opentelemetry-collector:0.67.0
+    restart: always
+    command: ['--config=/etc/otel-collector-config.yaml', '${OTELCOL_ARGS}']
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - '1888:1888' # pprof extension
+      - '8888:8888' # Prometheus metrics exposed by the collector
+      - '8889:8889' # Prometheus exporter metrics
+      - '13133:13133' # health_check extension
+      - '4317:4317' # OTLP gRPC receiver
+      - '4318:4318' # OTLP HTTP receiver
+      - '55679:55679' # zpages extension
+    depends_on:
+      - jaeger-all-in-one
+      - grafana
+
+  # node-exporter:
+  #   image: prom/node-exporter:latest
+  #   volumes:
+  #     - ./node-exporter.yml:/prometheus/node-exporter.yml:ro # Optional configuration for node-exporter
+
+volumes:
+  grafana-data: {}
