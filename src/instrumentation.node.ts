@@ -32,11 +32,10 @@ const sdk = new NodeSDK({
       }
     })
   ],
-  samplers: [
+  sampler:
     process.env.NODE_ENV === 'development'
       ? new AlwaysOnSampler()
-      : new TraceIdRatioBasedSampler(0.1)
-  ],
+      : new TraceIdRatioBasedSampler(0.1),
   spanProcessors: [customSpanProcessor]
 })
 sdk.start()
