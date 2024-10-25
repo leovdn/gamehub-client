@@ -55,7 +55,7 @@ export async function getStaticProps() {
         buttonLabel: mostPopularHighlight?.buttonLabel,
         buttonLink: mostPopularHighlight?.buttonLink,
         $backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${mostPopularHighlight?.background.data?.attributes?.url}`,
-        floatImage: !mostPopularHighlight?.floatImage ?? null,
+        floatImage: !mostPopularHighlight?.floatImage && null,
         align: mostPopularHighlight?.align
       },
       upcomingGames: upcommingGames?.data.map((game) => ({
@@ -71,7 +71,7 @@ export async function getStaticProps() {
         buttonLabel: upcommingHighlight?.buttonLabel,
         buttonLink: upcommingHighlight?.buttonLink,
         $backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${upcommingHighlight?.background.data?.attributes?.url}`,
-        floatImage: !upcommingHighlight?.floatImage ?? null,
+        floatImage: !upcommingHighlight?.floatImage && null,
         align: upcommingHighlight?.align
       },
       freeGames: freeGames?.data.map((game) => ({
@@ -87,7 +87,7 @@ export async function getStaticProps() {
         buttonLabel: freeHighlight?.buttonLabel,
         buttonLink: freeHighlight?.buttonLink,
         $backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${freeHighlight?.background.data?.attributes?.url}`,
-        floatImage: !freeHighlight?.floatImage ?? null,
+        floatImage: !freeHighlight?.floatImage && null,
         align: freeHighlight?.align
       }
     }
